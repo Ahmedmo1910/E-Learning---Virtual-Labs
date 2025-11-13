@@ -41,6 +41,9 @@ dependencies:
   flutter_svg: ^2.2.2
   dots_indicator: ^4.0.1
   persistent_bottom_nav_bar_v2: ^6.2.0
+  chewie: ^1.13.0
+  video_player: ^2.10.1
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:
