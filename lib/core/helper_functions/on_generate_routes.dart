@@ -1,3 +1,4 @@
+import 'package:e_learning/features/profile/presentation/views/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:e_learning/main_screen.dart';
 import '../../features/auth/forget_password/presentation/views/forget_password_screen.dart';
@@ -22,6 +23,8 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       );
     case MainScreen.routeName:
       return MaterialPageRoute(builder: (context) => const MainScreen());
+    case ProfileScreen.routeName:
+      return MaterialPageRoute(builder: (context) => const ProfileScreen());
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
   }

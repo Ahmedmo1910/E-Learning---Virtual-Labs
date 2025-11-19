@@ -1,3 +1,4 @@
+import 'package:e_learning/features/profile/presentation/views/profile_screen.dart';
 import 'package:e_learning/features/splash/presentation/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'core/helper_functions/on_generate_routes.dart';
@@ -20,7 +21,8 @@ class MyApp extends StatelessWidget {
       title: 'Smart Desk',
       debugShowCheckedModeBanner: false,
       onGenerateRoute: onGenerateRoute,
-      initialRoute: SplashScreen.routeName,
+      // initialRoute: SplashScreen.routeName,
+      initialRoute: ProfileScreen.routeName,
     );
   }
 }
