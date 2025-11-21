@@ -9,6 +9,7 @@ class ProfileContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: MediaQuery.of(context).size.height * 0.75,
       decoration: const BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.vertical(top: Radius.circular(35)),
@@ -31,7 +32,7 @@ class ProfileContainerWidget extends StatelessWidget {
                 Text(
                   "username@gmail.com",
                   style: AppTextStyles.medium18.copyWith(
-                    color: Color(0xffA0A0A0),
+                    color: AppColors.greyColor,
                   ),
                 ),
 
@@ -68,8 +69,6 @@ class ProfileContainerWidget extends StatelessWidget {
                   isSignOut: true,
                   onTap: () {},
                 ),
-
-                const SizedBox(height: 70),
               ],
             ),
           ),
