@@ -23,7 +23,7 @@ class CustomListTileWidget extends StatelessWidget {
         : AppColors.primaryColor;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 20.0 , vertical: 6.0),
       child: ListTile(
         // contentPadding: EdgeInsets.zero,
         leading: Icon(leadingIcon, color: textColor, size: 24),
