@@ -1,6 +1,6 @@
+import 'package:e_learning/core/utils/app_colors.dart';
 import 'package:e_learning/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
-
 
 class LessonTile extends StatelessWidget {
   final String lessonNumber;
@@ -18,27 +18,33 @@ class LessonTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 2,
+      color: Color(0xFFF9F9F9),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadiusGeometry.circular(0),
+        borderRadius: BorderRadiusGeometry.circular(5),
       ),
       child: ExpansionTile(
-        title: Text("$lessonNumber\n$title", style: AppTextStyles.bold16),
+        iconColor: AppColors.primaryColor,
+        collapsedIconColor: AppColors.primaryColor,
+        title: Text("$lessonNumber\n$title", style: AppTextStyles.semiBold14),
         children: subLessons != null
             ? subLessons!
                   .map(
                     (item) => ListTile(
+                      dense: true,
                       leading: IconButton(
                         icon: Icon(Icons.play_circle_outline),
                         onPressed: () {},
                       ),
-                      title: Text(item),
+                      title: Text(item, style: AppTextStyles.medium14),
                     ),
                   )
                   .toList()
             : [
                 Text(
                   'This course will be available soon',
-                  style: AppTextStyles.medium18,
+                  style: AppTextStyles.regular14.copyWith(
+                    color: AppColors.greyColor,
+                  ),
                 ),
               ],
       ),

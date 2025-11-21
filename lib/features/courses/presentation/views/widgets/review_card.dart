@@ -1,3 +1,4 @@
+import 'package:e_learning/core/utils/app_colors.dart';
 import 'package:e_learning/core/utils/app_text_styles.dart';
 import 'package:e_learning/features/courses/presentation/views/widgets/star_custom_widget.dart';
 import 'package:flutter/material.dart';
@@ -20,19 +21,30 @@ class ReviewCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 2,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      color: Color(0xFFF9F9F9),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
           children: [
             ListTile(
               leading: CircleAvatar(backgroundImage: AssetImage(imgPath)),
-              title: Text(name, style: AppTextStyles.bold16),
-              subtitle: Text(role, style: TextStyle(color: Colors.grey)),
+              title: Text(name, style: AppTextStyles.semiBold14),
+              subtitle: Text(
+                role,
+                style: AppTextStyles.medium12.copyWith(
+                  color: AppColors.greyColor,
+                ),
+              ),
               trailing: StarCustomWidget(starCount: 4),
             ),
             SizedBox(height: 5),
-            Text(review, style: TextStyle(color: Colors.grey)),
+            Text(
+              review,
+              style: AppTextStyles.regular14.copyWith(
+                color: AppColors.greyColor,
+              ),
+            ),
           ],
         ),
       ),

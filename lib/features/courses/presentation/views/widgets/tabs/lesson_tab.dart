@@ -12,7 +12,7 @@ class LessonsTab extends StatelessWidget {
         LessonTile(lessonNumber: "Lesson 1", title: "intro to course"),
         LessonTile(
           lessonNumber: "Lesson 2",
-          title: "dart",
+          title: "Dart",
           subLessons: [
             "dart variables and data types",
             "conditions and control flow",

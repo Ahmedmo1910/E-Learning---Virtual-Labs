@@ -3,6 +3,7 @@ import 'package:e_learning/core/utils/app_text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 import 'features/courses/presentation/views/courses_screen_body.dart';
+import 'features/profile/presentation/views/widgets/profile_screen_body.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -46,7 +47,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
           PersistentTabConfig(
-            screen: const Center(child: Text("Profile Screen")),
+            screen:ProfileScreenBody(),
             item: ItemConfig(
               icon: const Icon(Icons.person),
               title: "Profile",
