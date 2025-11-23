@@ -1,6 +1,6 @@
-import 'package:e_learning/features/splash/presentation/views/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'core/helper_functions/on_generate_routes.dart';
+import 'features/splash/presentation/views/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
