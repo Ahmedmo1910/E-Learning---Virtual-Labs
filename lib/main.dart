@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-       theme: ThemeData(
+      theme: ThemeData(
         fontFamily: 'Plus Jakarta Sans',
         scaffoldBackgroundColor: const Color(0xFFFFFFFF),
       ),
@@ -24,5 +24,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-

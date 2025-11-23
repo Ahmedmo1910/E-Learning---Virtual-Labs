@@ -1,5 +1,6 @@
 import 'package:e_learning/core/utils/app_colors.dart';
 import 'package:e_learning/core/utils/app_text_styles.dart';
+import 'package:e_learning/features/home/presentation/views/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
 
@@ -27,7 +28,7 @@ class _MainScreenState extends State<MainScreen> {
         controller: _controller,
         tabs: [
           PersistentTabConfig(
-            screen: const Center(child: Text("Home Screen")),
+            screen: const HomeScreen(),
             item: ItemConfig(
               icon: const Icon(Icons.home),
               title: "Home",
@@ -36,7 +37,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
           PersistentTabConfig(
-            screen: const Center(child: Text("Courses Screen")),
+            screen: Text("Courses Screen"),
             item: ItemConfig(
               icon: const Icon(Icons.menu_book),
               title: "Courses",
@@ -45,7 +46,7 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
           PersistentTabConfig(
-            screen: const Center(child: Text("Profile Screen")),
+            screen: Text("Profile Screen"),
             item: ItemConfig(
               icon: const Icon(Icons.person),
               title: "Profile",
