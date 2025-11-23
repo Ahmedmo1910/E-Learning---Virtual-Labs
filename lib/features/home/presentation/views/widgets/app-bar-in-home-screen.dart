@@ -14,8 +14,8 @@ class AppBarInHomeScreen extends StatelessWidget {
       width: double.infinity,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(30),
-          bottomRight: Radius.circular(30),
+          bottomLeft: Radius.circular(20),
+          bottomRight: Radius.circular(20),
         ),
         gradient: LinearGradient(
           colors: [AppColors.primaryColor, Color(0xff96e1c0)],
