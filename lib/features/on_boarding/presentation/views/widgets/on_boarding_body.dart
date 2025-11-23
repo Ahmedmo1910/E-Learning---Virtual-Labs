@@ -1,5 +1,4 @@
 import 'package:dots_indicator/dots_indicator.dart';
-import 'package:e_learning/core/utils/app_text_styles.dart';
 import 'package:e_learning/core/widgets/custom_text_button.dart';
 import 'package:e_learning/features/auth/sign_in/presentation/views/signin_screen.dart';
 import 'package:e_learning/features/on_boarding/presentation/views/widgets/on_boarding_page_view.dart';
@@ -39,39 +38,21 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
       child: Column(
         children: [
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Text.rich(
-                TextSpan(
-                    text: '${currentPage + 1}',
-                    style: AppTextStyles.semiBold18.copyWith(
-                      color: Colors.black,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: '/3',
-                        style: AppTextStyles.semiBold18.copyWith(
-                          color: const Color(0xFFC4C4C4),
-                        ),
-                      ),
-                    ]),
-              ),
               CustomTextButton(
                 label: 'Skip',
                 textColor: Colors.black,
                 onPressed: () {
                   // prefs.setBool(kIsOnBoardingViewSeen, true);
-                  Navigator.of(context)
-                      .pushReplacementNamed(SigninScreen.routeName);
+                  Navigator.of(
+                    context,
+                  ).pushReplacementNamed(SigninScreen.routeName);
                 },
               ),
             ],
           ),
-          Expanded(
-            child: OnBoardingPageView(
-              pageController: pageController,
-            ),
-          ),
+          Expanded(child: OnBoardingPageView(pageController: pageController)),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -81,16 +62,17 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                 maintainAnimation: true,
                 maintainState: true,
                 child: CustomTextButton(
-                    label: 'prev',
-                    textColor: const Color(0xFFC4C4C4),
-                    onPressed: () {
-                      if (currentPage > 0) {
-                        pageController.previousPage(
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.easeInOut,
-                        );
-                      }
-                    }),
+                  label: 'prev',
+                  textColor: const Color(0xFFC4C4C4),
+                  onPressed: () {
+                    if (currentPage > 0) {
+                      pageController.previousPage(
+                        duration: const Duration(milliseconds: 300),
+                        curve: Curves.easeInOut,
+                      );
+                    }
+                  },
+                ),
               ),
               DotsIndicator(
                 dotsCount: 3,
@@ -102,7 +84,8 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                   size: const Size.square(10.0),
                   activeSize: const Size(40.0, 8.0),
                   activeShape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5.0)),
+                    borderRadius: BorderRadius.circular(5.0),
+                  ),
                 ),
               ),
               CustomTextButton(
@@ -115,8 +98,9 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                     );
                   } else {
                     // prefs.setBool(kIsOnBoardingViewSeen, true);
-                    Navigator.of(context)
-                        .pushReplacementNamed(SigninScreen.routeName);
+                    Navigator.of(
+                      context,
+                    ).pushReplacementNamed(SigninScreen.routeName);
                   }
                 },
               ),
