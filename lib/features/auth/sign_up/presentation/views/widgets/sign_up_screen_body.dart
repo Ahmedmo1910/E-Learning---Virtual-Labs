@@ -4,9 +4,13 @@ import 'package:e_learning/core/widgets/custom_text_form_field.dart';
 import 'package:e_learning/core/widgets/or_sign_with.dart';
 import 'package:e_learning/core/widgets/password_field.dart';
 import 'package:e_learning/core/widgets/social_auth.dart';
+import 'package:e_learning/features/auth/data/auth_provider.dart';
+import 'package:e_learning/core/widgets/snack_bar_helper.dart';
 import 'package:e_learning/features/auth/sign_in/presentation/views/widgets/have_account_widget.dart';
+import 'package:e_learning/features/auth/verify_screen.dart';
 import 'package:e_learning/main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SignUpScreenBody extends StatefulWidget {
@@ -19,9 +23,10 @@ class SignUpScreenBody extends StatefulWidget {
 class _SignUpScreenBodyState extends State<SignUpScreenBody> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
-  late String email, password, name, confirmPassword;
+  late String email, phoneNumber, fullName, password;
   @override
   Widget build(BuildContext context) {
+    final _auth = context.watch<AuthProvider>();
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
@@ -35,7 +40,7 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
               const CustomText(label: 'account'),
               const SizedBox(height: 32.0),
               CustomTextFormField(
-                onSaved: (value) => name = value!,
+                onSaved: (value) => fullName = value!,
                 hintText: 'User Name',
                 keyboardType: TextInputType.emailAddress,
                 prefixIcon: SvgPicture.asset(
@@ -58,24 +63,60 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                 ),
               ),
               const SizedBox(height: 16.0),
-              PasswordField(onSaved: (value) => password = value!),
+              CustomTextFormField(
+                prefixIcon: Icon(Icons.phone),
+                hintText: 'phoneNumber',
+                onSaved: (value) => phoneNumber = value!,
+              ),
               const SizedBox(height: 16.0),
               PasswordField(
-                hintText: 'Confirm Password',
-                onSaved: (value) => confirmPassword = value!,
+                hintText: ' Password',
+                onSaved: (value) => password = value!,
               ),
               const SizedBox(height: 32.0),
+              if (_auth.errorMsg != null)
+                Text(
+                  _auth.errorMsg!,
+                  style: const TextStyle(color: Colors.red),
+                ),
               MainButton(
                 text: 'Sign Up',
                 hasCircularBorder: true,
-                onTap: () {
-                  Navigator.pushNamed(context, MainScreen.routeName);
-
+                onTap: () async {
                   if (formKey.currentState!.validate()) {
-                    // formKey.currentState!.save();
-                    // context
-                    //     .read<SignUpCubit>()
-                    //     .createUserWithEmailAndPassword(email, password, name);
+                    formKey.currentState!.save();
+
+                    if (_auth.isLoading) return;
+
+                    final sucess = await _auth.register(
+                      fullName: fullName.trim(),
+                      email: email.trim(),
+                      password: password.trim(),
+                      phoneNumber: phoneNumber.trim(),
+                    );
+
+                    if (!mounted) return;
+
+                    if (sucess) {
+                      SnackBarHelper.showSnackBar(
+                        context,
+                        'Account created successfuly',
+                        Colors.green,
+                      );
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) =>
+                              VerifyEmailScreen(email: email.trim()),
+                        ),
+                      );
+                    } else {
+                      SnackBarHelper.showSnackBar(
+                        context,
+                        'Registration failed',
+                        Colors.red,
+                      );
+                    }
                   } else {
                     setState(() {
                       autovalidateMode = AutovalidateMode.always;
