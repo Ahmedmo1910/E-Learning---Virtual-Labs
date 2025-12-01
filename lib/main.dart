@@ -1,4 +1,6 @@
+import 'package:e_learning/features/auth/data/auth_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'core/helper_functions/on_generate_routes.dart';
 import 'features/splash/presentation/views/splash_screen.dart';
 
@@ -12,15 +14,18 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        fontFamily: 'Plus Jakarta Sans',
-        scaffoldBackgroundColor: const Color(0xFFFFFFFF),
+    return ChangeNotifierProvider(
+      create: (context) => AuthProvider(),
+      child: MaterialApp(
+        theme: ThemeData(
+          fontFamily: 'Plus Jakarta Sans',
+          scaffoldBackgroundColor: const Color(0xFFFFFFFF),
+        ),
+        title: 'Smart Desk',
+        debugShowCheckedModeBanner: false,
+        onGenerateRoute: onGenerateRoute,
+        initialRoute: SplashScreen.routeName,
       ),
-      title: 'Smart Desk',
-      debugShowCheckedModeBanner: false,
-      onGenerateRoute: onGenerateRoute,
-      initialRoute: SplashScreen.routeName,
     );
   }
 }
