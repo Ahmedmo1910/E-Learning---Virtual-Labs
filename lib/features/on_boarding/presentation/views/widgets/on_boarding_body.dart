@@ -1,4 +1,6 @@
 import 'package:dots_indicator/dots_indicator.dart';
+import 'package:e_learning/constants.dart';
+import 'package:e_learning/core/services/shared_preferences_singleton.dart';
 import 'package:e_learning/core/widgets/custom_text_button.dart';
 import 'package:e_learning/features/auth/sign_in/presentation/views/signin_screen.dart';
 import 'package:e_learning/features/on_boarding/presentation/views/widgets/on_boarding_page_view.dart';
@@ -44,7 +46,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                 label: 'Skip',
                 textColor: Colors.black,
                 onPressed: () {
-                  // prefs.setBool(kIsOnBoardingViewSeen, true);
+                  prefs.setBool(kIsOnBoardingViewSeen, true);
                   Navigator.of(
                     context,
                   ).pushReplacementNamed(SigninScreen.routeName);
@@ -97,7 +99,7 @@ class _OnBoardingBodyState extends State<OnBoardingBody> {
                       curve: Curves.easeInOut,
                     );
                   } else {
-                    // prefs.setBool(kIsOnBoardingViewSeen, true);
+                    prefs.setBool(kIsOnBoardingViewSeen, true);
                     Navigator.of(
                       context,
                     ).pushReplacementNamed(SigninScreen.routeName);

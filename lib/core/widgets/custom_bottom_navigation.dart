@@ -76,7 +76,7 @@ class BottomNavItem extends StatelessWidget {
   final bool isActive;
   final VoidCallback onTap;
 
-  const BottomNavItem({
+  const BottomNavItem({super.key, 
     required this.icon,
     required this.label,
     required this.isActive,

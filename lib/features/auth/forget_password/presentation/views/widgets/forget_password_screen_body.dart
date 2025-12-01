@@ -1,8 +1,10 @@
 import 'package:e_learning/core/widgets/auth_header_widget.dart';
 import 'package:e_learning/core/widgets/custom_button.dart';
-import 'package:e_learning/core/widgets/custom_text_form_field.dart';
+import 'package:e_learning/core/widgets/snack_bar_helper.dart';
+import 'package:e_learning/features/auth/data/auth_provider.dart';
+import 'package:e_learning/features/auth/forget_password/presentation/views/verify_otp_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ForgetPasswordScreenBody extends StatefulWidget {
   const ForgetPasswordScreenBody({super.key});
@@ -13,9 +15,11 @@ class ForgetPasswordScreenBody extends StatefulWidget {
 }
 
 class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
-  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final _formKey = GlobalKey<FormState>();
+  String email = "";
   @override
   Widget build(BuildContext context) {
+    final _auth = context.watch<AuthProvider>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: SingleChildScrollView(
@@ -32,17 +36,17 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
             SizedBox(height: 30),
             Form(
               key: _formKey,
-              child: CustomTextFormField(
-                onSaved: (value) {},
-                hintText: 'Email Address',
-                keyboardType: TextInputType.emailAddress,
-                prefixIcon: SvgPicture.asset(
-                  'assets/icons/email.svg',
-                  fit: BoxFit.scaleDown,
-                  width: 24.0,
-                  height: 24.0,
-                ),
-              )
+              child: TextFormField(
+                decoration: const InputDecoration(labelText: "Email"),
+                validator: (val) {
+                  if (val == null || val.isEmpty) return "Email is required";
+
+                  if (!val.contains("@")) return "Enter valid email";
+
+                  return null;
+                },
+                onSaved: (val) => email = val!.trim(),
+              ),
             ),
             SizedBox(height: 40),
 
@@ -50,8 +54,40 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
             MainButton(
               text: 'Continue',
               hasCircularBorder: true,
-              onTap: () {},
-            )
+              onTap: _auth.isLoading
+                  ? null
+                  : () async {
+                      if (!_formKey.currentState!.validate()) {
+                        return;
+                      }
+                      _formKey.currentState!.save();
+                      final success = await _auth.sendResetOtp(email: email);
+                      if (!mounted) return;
+                      if (success) {
+                        SnackBarHelper.showSnackBar(
+                          context,
+                          "OTP sent! To $email",
+                          Colors.green,
+                        );
+
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => VerifyOtpScreen(email: email),
+                          ),
+                        );
+                      } else {
+                        SnackBarHelper.showSnackBar(
+                          context,
+                          _auth.errorMsg!,
+                          Colors.red,
+                        );
+                      }
+                    },
+              child: _auth.isLoading
+                  ? CircularProgressIndicator(color: Colors.white)
+                  : const Text("Send OTP"),
+            ),
           ],
         ),
       ),
