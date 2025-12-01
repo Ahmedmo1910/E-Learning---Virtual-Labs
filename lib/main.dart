@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'core/helper_functions/on_generate_routes.dart';
+import 'core/services/shared_preferences_singleton.dart';
 import 'features/splash/presentation/views/splash_screen.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await prefs.init();
   runApp(const MyApp());
 }
 
