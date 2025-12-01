@@ -2,9 +2,12 @@ import 'package:e_learning/features/auth/data/auth_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'core/helper_functions/on_generate_routes.dart';
+import 'core/services/shared_preferences_singleton.dart';
 import 'features/splash/presentation/views/splash_screen.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await prefs.init();
   runApp(const MyApp());
 }
 
