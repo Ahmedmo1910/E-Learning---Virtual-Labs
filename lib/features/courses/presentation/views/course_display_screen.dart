@@ -18,7 +18,7 @@ class CourseDisplayScreen extends StatelessWidget {
         child: MainButton(
           hasCircularBorder: true,
           text: "Buy This Course",
-          onTap: () {},
+          onTap: () async{},
         ),
       ),
     );

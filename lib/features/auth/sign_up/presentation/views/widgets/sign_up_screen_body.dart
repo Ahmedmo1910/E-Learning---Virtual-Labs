@@ -26,7 +26,7 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
   late String email, phoneNumber, fullName, password;
   @override
   Widget build(BuildContext context) {
-    final _auth = context.watch<AuthProvider>();
+    final auth = context.watch<AuthProvider>();
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
@@ -74,9 +74,9 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                 onSaved: (value) => password = value!,
               ),
               const SizedBox(height: 32.0),
-              if (_auth.errorMsg != null)
+              if (auth.errorMsg != null)
                 Text(
-                  _auth.errorMsg!,
+                  auth.errorMsg!,
                   style: const TextStyle(color: Colors.red),
                 ),
               MainButton(
@@ -86,9 +86,9 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
 
-                    if (_auth.isLoading) return;
+                    if (auth.isLoading) return;
 
-                    final sucess = await _auth.register(
+                    final sucess = await auth.register(
                       fullName: fullName.trim(),
                       email: email.trim(),
                       password: password.trim(),

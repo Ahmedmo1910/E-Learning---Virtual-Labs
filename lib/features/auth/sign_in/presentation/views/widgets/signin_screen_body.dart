@@ -31,7 +31,7 @@ class _SigninScreenBodyState extends State<SigninScreenBody> {
 
   @override
   Widget build(BuildContext context) {
-    final _auth = context.watch<AuthProvider>();
+    final auth = context.watch<AuthProvider>();
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
@@ -83,8 +83,8 @@ class _SigninScreenBodyState extends State<SigninScreenBody> {
                     () async {
                       if (formKey.currentState!.validate()) {
                         formKey.currentState!.save();
-                        if (_auth.isLoading) return;
-                        final sucess = await _auth.login(
+                        if (auth.isLoading) return;
+                        final sucess = await auth.login(
                           email: email.trim(),
                           password: password.trim(),
                         );

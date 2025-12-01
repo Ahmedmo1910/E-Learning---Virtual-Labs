@@ -12,7 +12,7 @@ class ProfileContainerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _auth = context.watch<AuthProvider>();
+    final auth = context.watch<AuthProvider>();
     return Container(
       height: MediaQuery.of(context).size.height * 0.75,
       decoration: const BoxDecoration(
@@ -72,10 +72,10 @@ class ProfileContainerWidget extends StatelessWidget {
                   title: "Sign Out",
                   leadingIcon: Icons.logout,
                   isSignOut: true,
-                  onTap: _auth.isLoading
+                  onTap: auth.isLoading
                       ? null
                       : () async {
-                          final sucess = await _auth.logout();
+                          final sucess = await auth.logout();
 
                           if (!context.mounted) return;
 
@@ -96,7 +96,7 @@ class ProfileContainerWidget extends StatelessWidget {
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
-                                  _auth.errorMsg ?? "Logout failed",
+                                  auth.errorMsg ?? "Logout failed",
                                 ),
                                 backgroundColor: Colors.red,
                               ),

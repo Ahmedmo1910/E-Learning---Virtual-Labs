@@ -2,7 +2,6 @@ import 'package:dio/dio.dart';
 import 'package:e_learning/core/services/api_pref_helper.dart';
 import 'package:e_learning/core/services/dio_client.dart';
 
-
 class AuthRepo {
   final DioClient _dioClient = DioClient();
   Future<dynamic> register({
@@ -84,6 +83,57 @@ class AuthRepo {
       return {
         "success": false,
         "message": e.response?.data['message'] ?? 'Logout faild',
+      };
+    }
+  }
+
+  Future<dynamic> sendResetOtp({required String email}) async {
+    try {
+      final responce = await _dioClient.dio.post(
+        '/api/Auth/password/forgot?email=$email',
+      );
+      return responce.data;
+    } on DioException catch (e) {
+      return {
+        "success": false,
+        "message": e.response?.data["message"] ?? "Failed to send OTP",
+      };
+    }
+  }
+
+  Future<dynamic> verifyOtp({
+    required String email,
+    required String otp,
+  }) async {
+    try {
+      final responce = await _dioClient.dio.post(
+        '/api/Auth/password/verifyotp',
+        data: {'email': email, 'otp': otp},
+      );
+      return responce.data;
+    } on DioException catch (e) {
+      return {
+        "success": false,
+        "message": e.response?.data["message"] ?? "OTP verification failed",
+      };
+    }
+  }
+
+  Future<dynamic> resetPassword({
+    required String email,
+    required String newpassword,
+    required String resetToken,
+  }) async {
+    try {
+      final responce = await _dioClient.dio.post(
+        '/api/Auth/password/reset',
+        data: {'email': email, 'newpassword': newpassword, 'token': resetToken},
+      );
+      return responce.data;
+    } on DioException catch (e) {
+      return {
+        "success": false,
+        "message": e.response?.data["message"] ?? "Reset failed",
       };
     }
   }
