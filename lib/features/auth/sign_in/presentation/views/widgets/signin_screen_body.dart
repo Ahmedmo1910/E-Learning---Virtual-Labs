@@ -5,7 +5,7 @@ import 'package:e_learning/core/widgets/custom_text_form_field.dart';
 import 'package:e_learning/core/widgets/or_sign_with.dart';
 import 'package:e_learning/core/widgets/password_field.dart';
 import 'package:e_learning/core/widgets/social_auth.dart';
-import 'package:e_learning/features/auth/data/auth_provider.dart';
+import 'package:e_learning/features/auth/cubit/auth_cubit.dart';
 import 'package:e_learning/features/auth/forget_password/presentation/views/forget_password_screen.dart';
 import 'package:e_learning/features/auth/presentation/auth_ui_actions.dart';
 import 'package:e_learning/features/auth/sign_up/presentation/views/widgets/dont_have_account_widget.dart';
@@ -28,7 +28,7 @@ class _SigninScreenBodyState extends State<SigninScreenBody> {
 
   @override
   Widget build(BuildContext context) {
-    final auth = context.watch<AuthProvider>();
+   final auth = context.watch<AuthCubit>();
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),

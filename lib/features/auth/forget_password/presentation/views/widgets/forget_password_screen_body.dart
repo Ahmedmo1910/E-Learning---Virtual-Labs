@@ -1,6 +1,7 @@
 import 'package:e_learning/core/widgets/auth_header_widget.dart';
 import 'package:e_learning/core/widgets/custom_button.dart';
-import 'package:e_learning/features/auth/data/auth_provider.dart';
+import 'package:e_learning/features/auth/cubit/auth_cubit.dart';
+import 'package:e_learning/features/auth/cubit/auth_state.dart';
 import 'package:e_learning/features/auth/presentation/auth_ui_actions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +19,8 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
   String email = "";
   @override
   Widget build(BuildContext context) {
-    final _auth = context.watch<AuthProvider>();
+     final auth = context.watch<AuthCubit>();
+      final state = auth.state;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: SingleChildScrollView(
@@ -73,8 +75,8 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
             MainButton(
               text: 'Continue',
               hasCircularBorder: true,
-              onTap: _auth.isLoading ? null : _sendResetOtp,
-              child: _auth.isLoading
+              onTap: state is AuthLoading? null : _sendResetOtp,
+              child: state is AuthLoading
                   ? CircularProgressIndicator(color: Colors.white)
                   : const Text("Send OTP"),
             ),

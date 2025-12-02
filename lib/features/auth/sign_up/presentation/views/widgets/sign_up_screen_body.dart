@@ -4,11 +4,11 @@ import 'package:e_learning/core/widgets/custom_text_form_field.dart';
 import 'package:e_learning/core/widgets/or_sign_with.dart';
 import 'package:e_learning/core/widgets/password_field.dart';
 import 'package:e_learning/core/widgets/social_auth.dart';
-import 'package:e_learning/features/auth/data/auth_provider.dart';
-import 'package:e_learning/core/widgets/snack_bar_helper.dart';
+import 'package:e_learning/features/auth/cubit/auth_cubit.dart';
+import 'package:e_learning/features/auth/cubit/auth_state.dart';
+import 'package:e_learning/features/auth/provider/auth_provider.dart';
 import 'package:e_learning/features/auth/presentation/auth_ui_actions.dart';
 import 'package:e_learning/features/auth/sign_in/presentation/views/widgets/have_account_widget.dart';
-import 'package:e_learning/features/auth/verify_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -26,7 +26,8 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
   late String email, phoneNumber, fullName, password;
   @override
   Widget build(BuildContext context) {
-    final auth = context.watch<AuthProvider>();
+    final auth = context.watch<AuthCubit>();
+     final state = auth.state;
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
@@ -74,8 +75,8 @@ class _SignUpScreenBodyState extends State<SignUpScreenBody> {
                 onSaved: (value) => password = value!,
               ),
               const SizedBox(height: 32.0),
-              if (auth.errorMsg != null)
-                Text(auth.errorMsg!, style: const TextStyle(color: Colors.red)),
+              if (state is AuthFailure)
+                Text(state.errorMsg, style: const TextStyle(color: Colors.red)),
               MainButton(
                 text: 'Sign Up',
                 hasCircularBorder: true,

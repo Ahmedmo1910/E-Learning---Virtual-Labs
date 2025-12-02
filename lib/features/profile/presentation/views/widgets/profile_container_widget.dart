@@ -1,6 +1,7 @@
 import 'package:e_learning/core/utils/app_colors.dart';
 import 'package:e_learning/core/utils/app_text_styles.dart';
-import 'package:e_learning/features/auth/data/auth_provider.dart';
+import 'package:e_learning/features/auth/cubit/auth_cubit.dart';
+import 'package:e_learning/features/auth/cubit/auth_state.dart';
 import 'package:e_learning/features/auth/presentation/auth_ui_actions.dart';
 import 'package:e_learning/features/profile/presentation/views/widgets/custom_list_tile_widget.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,8 @@ class ProfileContainerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final auth = context.watch<AuthProvider>();
+    final auth = context.watch<AuthCubit>();
+    final state = auth.state;
     return Container(
       height: MediaQuery.of(context).size.height * 0.75,
       decoration: const BoxDecoration(
@@ -71,7 +73,7 @@ class ProfileContainerWidget extends StatelessWidget {
                   title: "Sign Out",
                   leadingIcon: Icons.logout,
                   isSignOut: true,
-                  onTap: auth.isLoading
+                  onTap: state is AuthLoading
                       ? null
                       : () async {
                           await AuthUiActions.signOut(context: context);

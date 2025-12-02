@@ -1,8 +1,7 @@
 import 'package:e_learning/core/widgets/custom_button.dart';
-import 'package:e_learning/core/widgets/snack_bar_helper.dart';
-import 'package:e_learning/features/auth/data/auth_provider.dart';
+import 'package:e_learning/features/auth/cubit/auth_cubit.dart';
+import 'package:e_learning/features/auth/cubit/auth_state.dart';
 import 'package:e_learning/features/auth/presentation/auth_ui_actions.dart';
-import 'package:e_learning/features/auth/sign_in/presentation/views/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,7 +26,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _auth = context.watch<AuthProvider>();
+    final auth = context.watch<AuthCubit>();
+    final state = auth.state;
 
     return Scaffold(
       appBar: AppBar(title: const Text("Reset Password")),
@@ -72,8 +72,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
               const SizedBox(height: 20),
 
               MainButton(
-                onTap: _auth.isLoading ? null : _resetPassword,
-                child: _auth.isLoading
+                onTap: state is AuthLoading ? null : _resetPassword,
+                child: state is AuthLoading
                     ? CircularProgressIndicator(color: Colors.white)
                     : const Text("Reset Password"),
               ),
