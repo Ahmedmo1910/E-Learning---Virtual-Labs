@@ -1,6 +1,7 @@
-import 'package:e_learning/core/widgets/snack_bar_helper.dart';
-import 'package:e_learning/features/auth/data/auth_provider.dart';
-import 'package:e_learning/features/auth/sign_in/presentation/views/signin_screen.dart';
+import 'package:e_learning/core/widgets/custom_button.dart';
+import 'package:e_learning/features/auth/cubit/auth_cubit.dart';
+import 'package:e_learning/features/auth/cubit/auth_state.dart';
+import 'package:e_learning/features/auth/presentation/auth_ui_actions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,7 +26,8 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final _auth = context.watch<AuthProvider>();
+    final auth = context.watch<AuthCubit>();
+    final state = auth.state;
 
     return Scaffold(
       appBar: AppBar(title: const Text("Reset Password")),
@@ -37,7 +39,26 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
             children: [
               TextFormField(
                 obscureText: true,
-                decoration: const InputDecoration(labelText: "New Password"),
+                decoration: InputDecoration(
+                  hintText: "New Password",
+                  filled: true,
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey.shade400),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  enabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey.shade400),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  disabledBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey.shade400),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: Colors.grey.shade400),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
                 validator: (val) {
                   if (val == null || val.isEmpty) return "Password required";
 
@@ -50,43 +71,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
 
               const SizedBox(height: 20),
 
-              ElevatedButton(
-                onPressed: _auth.isLoading
-                    ? null
-                    : () async {
-                        if (!_formKey.currentState!.validate()) return;
-
-                        _formKey.currentState!.save();
-
-                        final success = await _auth.resetPassword(
-                          email: widget.email,
-                          resetToken: widget.resetToken,
-                          newpassword: newPassword,
-                        );
-
-                        if (!mounted) return;
-
-                        if (success) {
-                          SnackBarHelper.showSnackBar(
-                            context,
-                            "Password Changed Successfully",
-                            Colors.green,
-                          );
-
-                          Navigator.pushAndRemoveUntil(
-                            context,
-                            MaterialPageRoute(builder: (_) => SigninScreen()),
-                            (route) => false,
-                          );
-                        } else {
-                          SnackBarHelper.showSnackBar(
-                            context,
-                            _auth.errorMsg!,
-                            Colors.red,
-                          );
-                        }
-                      },
-                child: _auth.isLoading
+              MainButton(
+                onTap: state is AuthLoading ? null : _resetPassword,
+                child: state is AuthLoading
                     ? CircularProgressIndicator(color: Colors.white)
                     : const Text("Reset Password"),
               ),
@@ -95,5 +82,41 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
         ),
       ),
     );
+  }
+
+  Future<void> _resetPassword() async {
+    // final _auth = context.read<AuthProvider>();
+    if (!_formKey.currentState!.validate()) return;
+
+    _formKey.currentState!.save();
+    await AuthUiActions.resetPassword(
+      context: context,
+      email: widget.email,
+      resetToken: widget.resetToken,
+      newpassword: newPassword,
+    );
+    // final success = await _auth.resetPassword(
+    //   email: widget.email,
+    //   resetToken: widget.resetToken,
+    //   newpassword: newPassword,
+    // );
+
+    // if (!mounted) return;
+
+    // if (success) {
+    //   SnackBarHelper.showSnackBar(
+    //     context,
+    //     "Password Changed Successfully",
+    //     Colors.green,
+    //   );
+
+    //   Navigator.pushAndRemoveUntil(
+    //     context,
+    //     MaterialPageRoute(builder: (_) => SigninScreen()),
+    //     (route) => false,
+    //   );
+    // } else {
+    //   SnackBarHelper.showSnackBar(context, _auth.errorMsg!, Colors.red);
+    // }
   }
 }
