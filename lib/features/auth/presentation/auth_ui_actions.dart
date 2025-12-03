@@ -177,8 +177,7 @@ class AuthUiActions {
         'Logged out successfully.',
         Colors.green,
       );
-      Navigator.pushAndRemoveUntil(
-        context,
+      Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(
         MaterialPageRoute(builder: (_) => const SigninScreen()),
         (route) => false,
       );

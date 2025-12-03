@@ -6,8 +6,11 @@ class SigninScreen extends StatelessWidget {
   static const String routeName = 'signin';
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
-      body: SafeArea(child: SigninScreenBody()),
-    );
+   return GestureDetector(
+    onTap: () => FocusScope.of(context).unfocus(),
+     child: Scaffold(
+        body: SafeArea(child: SigninScreenBody()),
+      ),
+   );
   }
 }

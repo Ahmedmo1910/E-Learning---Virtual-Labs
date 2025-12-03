@@ -6,7 +6,6 @@ import 'package:e_learning/core/widgets/password_field.dart';
 import 'package:e_learning/core/widgets/social_auth.dart';
 import 'package:e_learning/features/auth/cubit/auth_cubit.dart';
 import 'package:e_learning/features/auth/cubit/auth_state.dart';
-import 'package:e_learning/features/auth/provider/auth_provider.dart';
 import 'package:e_learning/features/auth/presentation/auth_ui_actions.dart';
 import 'package:e_learning/features/auth/sign_in/presentation/views/widgets/have_account_widget.dart';
 import 'package:flutter/material.dart';

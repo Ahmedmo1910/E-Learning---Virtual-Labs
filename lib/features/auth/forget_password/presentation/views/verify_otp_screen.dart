@@ -23,54 +23,57 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
   Widget build(BuildContext context) {
     final auth = context.watch<AuthCubit>();
     final state = auth.state;
-    return Scaffold(
-      appBar: AppBar(title: const Text("Verify OTP")),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              TextFormField(
-                decoration: InputDecoration(
-                  hintText: "OTP Code",
-                  filled: true,
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(10),
+    return GestureDetector(
+       onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        appBar: AppBar(title: const Text("Verify OTP")),
+        body: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                TextFormField(
+                  decoration: InputDecoration(
+                    hintText: "OTP Code",
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey.shade400),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey.shade400),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    disabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey.shade400),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey.shade400),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  disabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) {
+                      return "OTP required";
+                    } else {
+                      return null;
+                    }
+                  },
+                  onSaved: (val) => otp = val!.trim(),
                 ),
-                validator: (val) {
-                  if (val == null || val.isEmpty) {
-                    return "OTP required";
-                  } else {
-                    return null;
-                  }
-                },
-                onSaved: (val) => otp = val!.trim(),
-              ),
-
-              const SizedBox(height: 20),
-
-              MainButton(
-                onTap: state is AuthLoading ? null : _verifyOtp,
-                child: state is AuthLoading
-                    ? CircularProgressIndicator(color: Colors.white)
-                    : const Text("Verify"),
-              ),
-            ],
+      
+                const SizedBox(height: 20),
+      
+                MainButton(
+                  onTap: state is AuthLoading ? null : _verifyOtp,
+                  child: state is AuthLoading
+                      ? CircularProgressIndicator(color: Colors.white)
+                      : const Text("Verify"),
+                ),
+              ],
+            ),
           ),
         ),
       ),
