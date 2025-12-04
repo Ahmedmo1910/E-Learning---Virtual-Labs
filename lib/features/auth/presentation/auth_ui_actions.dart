@@ -69,7 +69,7 @@ class AuthUiActions {
 
     if (state is AuthSuccess) {
       SnackBarHelper.showSnackBar(context, 'Login successfuly', Colors.green);
-      Navigator.push(context, MaterialPageRoute(builder: (_) => MainScreen()));
+      Navigator.pushReplacementNamed(context,MainScreen.routeName);
     } else if (state is AuthFailure) {
       SnackBarHelper.showSnackBar(context, state.errorMsg, Colors.red);
     }
@@ -177,11 +177,9 @@ class AuthUiActions {
         'Logged out successfully.',
         Colors.green,
       );
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(builder: (_) => const SigninScreen()),
-        (route) => false,
-      );
+     Navigator.of(context, rootNavigator: true)
+    .pushNamedAndRemoveUntil(SigninScreen.routeName, (route) => false);
+
     } else if (state is AuthFailure) {
       SnackBarHelper.showSnackBar(context, state.errorMsg, Colors.red);
     }
