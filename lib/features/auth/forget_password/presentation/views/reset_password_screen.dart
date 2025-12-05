@@ -29,55 +29,58 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     final auth = context.watch<AuthCubit>();
     final state = auth.state;
 
-    return Scaffold(
-      appBar: AppBar(title: const Text("Reset Password")),
-      body: Padding(
-        padding: const EdgeInsets.all(20),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              TextFormField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  hintText: "New Password",
-                  filled: true,
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(10),
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        appBar: AppBar(title: const Text("Reset Password")),
+        body: Padding(
+          padding: const EdgeInsets.all(20),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                TextFormField(
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    hintText: "New Password",
+                    filled: true,
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey.shade400),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey.shade400),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    disabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey.shade400),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.grey.shade400),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                   ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  disabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
+                  validator: (val) {
+                    if (val == null || val.isEmpty) return "Password required";
+      
+                    if (val.length < 8) return "Required 8 characters or higher";
+      
+                    return null;
+                  },
+                  onSaved: (val) => newPassword = val!.trim(),
                 ),
-                validator: (val) {
-                  if (val == null || val.isEmpty) return "Password required";
-
-                  if (val.length < 8) return "Required 8 characters or higher";
-
-                  return null;
-                },
-                onSaved: (val) => newPassword = val!.trim(),
-              ),
-
-              const SizedBox(height: 20),
-
-              MainButton(
-                onTap: state is AuthLoading ? null : _resetPassword,
-                child: state is AuthLoading
-                    ? CircularProgressIndicator(color: Colors.white)
-                    : const Text("Reset Password"),
-              ),
-            ],
+      
+                const SizedBox(height: 20),
+      
+                MainButton(
+                  onTap: state is AuthLoading ? null : _resetPassword,
+                  child: state is AuthLoading
+                      ? CircularProgressIndicator(color: Colors.white)
+                      : const Text("Reset Password"),
+                ),
+              ],
+            ),
           ),
         ),
       ),
