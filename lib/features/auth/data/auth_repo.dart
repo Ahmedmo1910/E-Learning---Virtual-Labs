@@ -121,13 +121,13 @@ class AuthRepo {
 
   Future<dynamic> resetPassword({
     required String email,
-    required String newpassword,
+    required String newPassword,
     required String resetToken,
   }) async {
     try {
       final responce = await _dioClient.dio.post(
         '/api/Auth/password/reset',
-        data: {'email': email, 'newpassword': newpassword, 'token': resetToken},
+        data: {'email': email, 'newpassword': newPassword, 'token': resetToken},
       );
       return responce.data;
     } on DioException catch (e) {

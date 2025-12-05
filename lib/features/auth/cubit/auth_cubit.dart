@@ -87,7 +87,7 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
     final response = await _authRepo.resetPassword(
       email: email,
-      newpassword: newpassword,
+      newPassword: newpassword,
       resetToken: resetToken,
     );
     if (response["success"] == true) {

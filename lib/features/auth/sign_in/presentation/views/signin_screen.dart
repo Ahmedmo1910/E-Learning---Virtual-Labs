@@ -1,16 +1,17 @@
-import 'package:e_learning/features/auth/sign_in/presentation/views/widgets/signin_screen_body.dart';
+import 'package:e_learning/features/auth/data/auth_repo.dart';
+import 'package:e_learning/features/auth/sign_in/presentation/cubit/signin_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'widgets/signin_screen_body_bloc_consumer.dart';
 
 class SigninScreen extends StatelessWidget {
   const SigninScreen({super.key});
   static const String routeName = 'signin';
   @override
   Widget build(BuildContext context) {
-   return GestureDetector(
-    onTap: () => FocusScope.of(context).unfocus(),
-     child: Scaffold(
-        body: SafeArea(child: SigninScreenBody()),
-      ),
-   );
+    return BlocProvider(
+      create: (context) => SigninCubit(AuthRepo()),
+      child: Scaffold(body: SafeArea(child: SigninScreenBodyBlocConsumer())),
+    );
   }
 }
