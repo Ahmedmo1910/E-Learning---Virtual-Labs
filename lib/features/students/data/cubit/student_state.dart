@@ -46,6 +46,5 @@ class GetProfile extends StudentState {
 }
 
 class UpdateProfile extends StudentState {
-  final dynamic data;
-  UpdateProfile(this.data);
+ 
 }
