@@ -1,18 +1,13 @@
 import 'package:e_learning/core/utils/app_colors.dart';
 import 'package:e_learning/core/utils/app_text_styles.dart';
-import 'package:e_learning/core/widgets/snack_bar_helper.dart';
-import 'package:e_learning/features/auth/data/auth_provider.dart';
-import 'package:e_learning/features/auth/sign_in/presentation/views/signin_screen.dart';
 import 'package:e_learning/features/profile/presentation/views/widgets/custom_list_tile_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileContainerWidget extends StatelessWidget {
   const ProfileContainerWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final auth = context.watch<AuthProvider>();
     return Container(
       height: MediaQuery.of(context).size.height * 0.75,
       decoration: const BoxDecoration(
@@ -72,37 +67,7 @@ class ProfileContainerWidget extends StatelessWidget {
                   title: "Sign Out",
                   leadingIcon: Icons.logout,
                   isSignOut: true,
-                  onTap: auth.isLoading
-                      ? null
-                      : () async {
-                          final sucess = await auth.logout();
-
-                          if (!context.mounted) return;
-
-                          if (sucess) {
-                            SnackBarHelper.showSnackBar(
-                              context,
-                              'Logged out successfully.',
-                              Colors.green,
-                            );
-                            Navigator.pushAndRemoveUntil(
-                              context,
-                              MaterialPageRoute(
-                                builder: (_) => const SigninScreen(),
-                              ),
-                              (route) => false,
-                            );
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              SnackBar(
-                                content: Text(
-                                  auth.errorMsg ?? "Logout failed",
-                                ),
-                                backgroundColor: Colors.red,
-                              ),
-                            );
-                          }
-                        },
+                  onTap: () {},
                 ),
               ],
             ),
