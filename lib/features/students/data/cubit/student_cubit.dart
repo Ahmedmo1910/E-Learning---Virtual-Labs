@@ -45,7 +45,7 @@ class StudentCubit extends Cubit<StudentState> {
     final response = await _studentsRepo.getLessons();
 
     if (response is Map && response["statusCode"] == 200) {
-      emit(GetLessons(response));
+      emit(GetLessons(response['value']));
     } else {
       emit(StudentFailure(response.toString()));
     }
@@ -57,7 +57,7 @@ class StudentCubit extends Cubit<StudentState> {
     final response = await _studentsRepo.getNotifications();
 
     if (response is Map && response["statusCode"] == 200) {
-      emit(GetNotifications(response));
+      emit(GetNotifications(response['value']));
     } else {
       emit(StudentFailure(response.toString()));
     }
@@ -85,7 +85,7 @@ class StudentCubit extends Cubit<StudentState> {
       phonenumber: phonenumber,
     );
     if (response is Map && response["statusCode"] == 200) {
-      emit(UpdateProfile(response));
+      emit(UpdateProfile());
     } else {
       emit(StudentFailure(response.toString()));
     }
