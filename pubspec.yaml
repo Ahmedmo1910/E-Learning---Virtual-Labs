@@ -47,6 +47,7 @@ dependencies:
   lottie: ^3.3.2
   modal_progress_hud_nsn: ^0.5.1
   pinput: ^6.0.1
+  flutter_secure_storage: ^9.2.4
 
 dev_dependencies:
 
