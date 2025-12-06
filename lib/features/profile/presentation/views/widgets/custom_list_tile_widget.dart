@@ -13,7 +13,7 @@ class CustomListTileWidget extends StatelessWidget {
 
   final String title;
   final IconData leadingIcon;
-  final Future<void> Function()? onTap;
+  final VoidCallback onTap;
 
   final bool isSignOut;
 
