@@ -1,6 +1,9 @@
 import 'package:e_learning/core/widgets/custom_app_bar.dart';
+import 'package:e_learning/features/auth/data/auth_repo.dart';
+import 'package:e_learning/features/auth/forget_password/presentation/cubit/reset_password_cubit.dart';
 import 'package:flutter/material.dart';
-import 'widgets/forget_password_screen_body.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'widgets/forget_password_bloc_consumer.dart';
 
 class ForgetPasswordScreen extends StatelessWidget {
   static const String routeName = 'forgetPasswordScreen';
@@ -8,11 +11,11 @@ class ForgetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+    return BlocProvider(
+      create: (context) => ResetPasswordCubit(AuthRepo()),
       child: Scaffold(
         appBar: customAppBar(context),
-        body: ForgetPasswordScreenBody(),
+        body: ForgetPasswordBlocConsumer(),
       ),
     );
   }

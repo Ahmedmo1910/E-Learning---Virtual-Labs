@@ -1,26 +1,20 @@
-import 'package:e_learning/core/widgets/auth_header_widget.dart';
-import 'package:e_learning/core/widgets/custom_button.dart';
-import 'package:e_learning/features/auth/cubit/auth_cubit.dart';
-import 'package:e_learning/features/auth/cubit/auth_state.dart';
-import 'package:e_learning/features/auth/presentation/auth_ui_actions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:e_learning/features/auth/forget_password/presentation/cubit/reset_password_cubit.dart';
+import 'package:e_learning/core/widgets/auth_header_widget.dart';
+import 'package:e_learning/core/widgets/custom_text_form_field.dart';
+import 'package:e_learning/core/widgets/custom_button.dart';
 
-class ForgetPasswordScreenBody extends StatefulWidget {
-  const ForgetPasswordScreenBody({super.key});
+class ForgetPasswordScreenBody extends StatelessWidget {
+  ForgetPasswordScreenBody({super.key});
 
-  @override
-  State<ForgetPasswordScreenBody> createState() =>
-      _ForgetPasswordScreenBodyState();
-}
-
-class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
   final _formKey = GlobalKey<FormState>();
-  String email = "";
+  late String email;
+
   @override
   Widget build(BuildContext context) {
-     final auth = context.watch<AuthCubit>();
-      final state = auth.state;
+    final cubit = context.read<ResetPasswordCubit>();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20.0),
       child: SingleChildScrollView(
@@ -37,36 +31,13 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
             SizedBox(height: 30),
             Form(
               key: _formKey,
-              child: TextFormField(
-                decoration: InputDecoration(
-                  filled: true,
-
-                  hintText: "Email",
-                  border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  disabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.grey.shade400),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
-                validator: (val) {
-                  if (val == null || val.isEmpty) return "Email is required";
-
-                  if (!val.contains("@")) return "Enter valid email";
-
-                  return null;
-                },
+              child: CustomTextFormField(
+                hintText: "Email",
                 onSaved: (val) => email = val!.trim(),
+                prefixIcon: SvgPicture.asset(
+                  'assets/icons/email.svg',
+                  fit: BoxFit.scaleDown,
+                ),
               ),
             ),
             SizedBox(height: 40),
@@ -75,22 +46,16 @@ class _ForgetPasswordScreenBodyState extends State<ForgetPasswordScreenBody> {
             MainButton(
               text: 'Continue',
               hasCircularBorder: true,
-              onTap: state is AuthLoading? null : _sendResetOtp,
-              child: state is AuthLoading
-                  ? CircularProgressIndicator(color: Colors.white)
-                  : const Text("Send OTP"),
+              onTap: () {
+                if (!_formKey.currentState!.validate()) return;
+                _formKey.currentState!.save();
+                cubit.setEmail(email);
+                cubit.sendResetOtp();
+              },
             ),
           ],
         ),
       ),
     );
-  }
-
-  Future<void> _sendResetOtp() async {
-    if (!_formKey.currentState!.validate()) {
-      return;
-    }
-    _formKey.currentState!.save();
-    await AuthUiActions.sendResetOtp(context: context, email: email);
   }
 }

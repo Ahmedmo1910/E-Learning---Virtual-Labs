@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class MainButton extends StatelessWidget {
   final String? text;
-  final Future<void> Function()? onTap;
+  final VoidCallback? onTap;
   final bool hasCircularBorder;
   final Widget? child;
 
