@@ -4,7 +4,9 @@ import 'package:e_learning/features/home/presentation/views/widgets/custom_text_
 import 'package:e_learning/features/home/presentation/views/widgets/line_up_listView.dart';
 import 'package:e_learning/features/home/presentation/views/widgets/list_view_category_item.dart';
 import 'package:e_learning/features/home/presentation/views/widgets/list_view_courses.dart';
+import 'package:e_learning/features/students/data/cubit/student_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 class HomeScreen extends StatelessWidget {
