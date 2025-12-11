@@ -1,7 +1,9 @@
 import 'package:e_learning/core/utils/app_colors.dart';
 import 'package:e_learning/features/home/presentation/views/widgets/search_field.dart';
 import 'package:e_learning/features/home/presentation/views/widgets/user_info.dart';
+import 'package:e_learning/features/students/data/cubit/student_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 class AppBarInHomeScreen extends StatelessWidget {
@@ -29,7 +31,7 @@ class AppBarInHomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Gap(50),
-            const UserInfo(),
+            UserInfo(),
             const Gap(25),
             const SearchField(),
           ],
