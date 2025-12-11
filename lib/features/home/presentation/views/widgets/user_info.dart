@@ -39,7 +39,7 @@ class UserInfo extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 customTextMe(
-                  text: 'Hi, ${name} 👋🏻',
+                  text: 'Hi, $name 👋🏻',
                   size: 18,
                   weight: FontWeight.bold,
                 ),

@@ -1,5 +1,8 @@
 import 'package:e_learning/core/utils/app_colors.dart';
 import 'package:e_learning/core/utils/app_text_styles.dart';
+import 'package:e_learning/features/attendence/attendence_screen.dart';
+import 'package:e_learning/features/dashboard/dash_board_screen.dart';
+import 'package:e_learning/features/grades/grades_screen.dart';
 import 'package:e_learning/features/profile/presentation/views/edit_profile_screen.dart';
 import 'package:e_learning/features/profile/presentation/views/widgets/custom_list_tile_widget.dart';
 import 'package:e_learning/features/students/data/cubit/student_cubit.dart';
@@ -101,19 +104,37 @@ class ProfileContainerWidget extends StatelessWidget {
                         },
                       ),
                       CustomListTileWidget(
-                        title: "Bookmarks",
-                        leadingIcon: Icons.bookmark_border,
-                        onTap: () async {},
+                        title: "DashBoard",
+                        leadingIcon: Icons.dashboard_customize,
+                        onTap: () async {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => DashboardScreen(),
+                            ),
+                          );
+                        },
                       ),
                       CustomListTileWidget(
-                        title: "Write a Review",
-                        leadingIcon: Icons.star_border,
-                        onTap: () async {},
+                        title: "Grades",
+                        leadingIcon: Icons.my_library_books,
+                        onTap: () async {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => GradesScreen(),
+                            ),
+                          );
+                        },
                       ),
                       CustomListTileWidget(
-                        title: "Share App",
-                        leadingIcon: Icons.share_outlined,
-                        onTap: () async {},
+                        title: "Attendence",
+                        leadingIcon: Icons.assessment,
+                        onTap: () async {
+                           Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => AttendenceScreen(),
+                            ),
+                          );
+                        },
                       ),
                       CustomListTileWidget(
                         title: "Privacy Policy",
