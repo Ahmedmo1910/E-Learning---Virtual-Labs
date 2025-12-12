@@ -1,5 +1,4 @@
 import 'package:e_learning/core/services/custom_bloc_observer.dart';
-import 'package:e_learning/features/students/data/cubit/student_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'core/helper_functions/on_generate_routes.dart';
@@ -19,20 +18,15 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => StudentCubit()
-        ..getProfile()
-        ..getNotifications(),
-      child: MaterialApp(
-        theme: ThemeData(
-          fontFamily: 'Plus Jakarta Sans',
-          scaffoldBackgroundColor: const Color(0xFFFFFFFF),
-        ),
-        title: 'Smart Desk',
-        debugShowCheckedModeBanner: false,
-        onGenerateRoute: onGenerateRoute,
-        initialRoute: SplashScreen.routeName,
+    return MaterialApp(
+      theme: ThemeData(
+        fontFamily: 'Plus Jakarta Sans',
+        scaffoldBackgroundColor: const Color(0xFFFFFFFF),
       ),
+      title: 'Smart Desk',
+      debugShowCheckedModeBanner: false,
+      onGenerateRoute: onGenerateRoute,
+      initialRoute: SplashScreen.routeName,
     );
   }
 }

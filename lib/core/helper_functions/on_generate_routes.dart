@@ -1,3 +1,4 @@
+import 'package:e_learning/features/profile/presentation/views/edit_profile_screen.dart';
 import 'package:e_learning/features/profile/presentation/views/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:e_learning/main_screen.dart';
@@ -29,6 +30,12 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case CourseDisplayScreen.routeName:
       return MaterialPageRoute(
         builder: (context) => const CourseDisplayScreen(),
+      );
+    case EditProfileScreen.routeName:
+      final args = settings.arguments as Map;
+      return MaterialPageRoute(
+        builder: (context) => const EditProfileScreen(),
+        settings: RouteSettings(arguments: args),
       );
     default:
       return MaterialPageRoute(builder: (context) => const Scaffold());
