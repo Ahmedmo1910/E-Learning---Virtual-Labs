@@ -10,8 +10,8 @@ class DioClient {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
-      connectTimeout: Duration(seconds: 5),
-      receiveTimeout: Duration(seconds: 5),
+      connectTimeout: Duration(seconds: 10),
+      receiveTimeout: Duration(seconds: 10),
     ),
   );
 

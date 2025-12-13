@@ -11,6 +11,7 @@ class CustomTextFormField extends StatelessWidget {
   final bool obscureText;
   final Widget? suffixIcon;
   final Widget? prefixIcon;
+  final String? labelText;
 
   const CustomTextFormField({
     super.key,
@@ -22,6 +23,7 @@ class CustomTextFormField extends StatelessWidget {
     this.obscureText = false,
     this.suffixIcon,
     this.prefixIcon,
+    this.labelText,
   });
 
   @override
@@ -44,14 +46,16 @@ class CustomTextFormField extends StatelessWidget {
         AutofillHints.email,
         AutofillHints.password,
         AutofillHints.name,
-        AutofillHints.telephoneNumber
+        AutofillHints.telephoneNumber,
       ],
       cursorColor: AppColors.primaryColor,
       obscureText: obscureText,
       decoration: InputDecoration(
         hintText: hintText,
-        hintStyle: AppTextStyles.regular14.copyWith(
-          color: const Color(0xFF858383),
+        labelText: labelText,
+        hintStyle: AppTextStyles.regular14.copyWith(color: AppColors.greyColor),
+        labelStyle: AppTextStyles.regular14.copyWith(
+          color: AppColors.greyColor,
         ),
         filled: true,
         fillColor: fillColor,
@@ -73,10 +77,7 @@ class CustomTextFormField extends StatelessWidget {
   OutlineInputBorder buildBorder() {
     return OutlineInputBorder(
       borderRadius: BorderRadius.circular(5),
-      borderSide: const BorderSide(
-        color: Color(0xFFDEDEDE),
-        width: 1,
-      ),
+      borderSide: const BorderSide(color: Color(0xFFDEDEDE), width: 1),
     );
   }
 }

@@ -1,30 +1,32 @@
 import 'package:e_learning/core/utils/app_colors.dart';
 import 'package:e_learning/features/home/presentation/views/widgets/custom_text_me.dart';
 import 'package:e_learning/features/home/presentation/views/widgets/notification_list.dart';
-import 'package:e_learning/features/students/data/cubit/student_cubit.dart';
-import 'package:e_learning/features/students/data/cubit/student_state.dart';
+import 'package:e_learning/features/home/presentation/cubits/home_cubit/home_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:popover/popover.dart';
 
 class UserInfo extends StatelessWidget {
-  // final BuildContext context;
   const UserInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<StudentCubit, StudentState>(
+    return BlocBuilder<HomeCubit, HomeState>(
+      buildWhen: (previous, current) {
+        final profileChanged = previous.profile != current.profile;
+        final notificationsChanged =
+            previous.notifications != current.notifications;
+        return profileChanged || notificationsChanged;
+      },
       builder: (context, state) {
         String name = 'Student';
-        List notifications = [];
-        if (state is GetProfile) {
-          final data = state.data;
-          name = data['fullname'];
+        List notifications = state.notifications ?? [];
+
+        if (state.profile != null && state.profile!['fullname'] != null) {
+          name = state.profile!['fullname'] as String;
         }
-        if (state is GetNotifications) {
-          notifications = state.data;
-        }
+
         return Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -32,7 +34,7 @@ class UserInfo extends StatelessWidget {
             const CircleAvatar(
               radius: 22,
               backgroundColor: AppColors.darkPrimaryColor,
-              //backgroundImage: AssetImage('assets/images/MyPhoto.jpg'),
+              // backgroundImage: AssetImage('assets/images/MyPhoto.jpg'),
             ),
             const Gap(15),
             Column(
@@ -43,8 +45,6 @@ class UserInfo extends StatelessWidget {
                   size: 18,
                   weight: FontWeight.bold,
                 ),
-
-                // Fallback widget for other states
                 customTextMe(
                   text: 'Welcome to World of Learning! ',
                   size: 14,
@@ -64,15 +64,14 @@ class UserInfo extends StatelessWidget {
                   showPopover(
                     context: context,
                     transitionDuration: const Duration(milliseconds: 150),
-                    bodyBuilder: (context) => NotificationsList(
-                      notifications: notifications,
-                      context: context,
-                    ),
+                    bodyBuilder: (context) =>
+                        NotificationsList(notifications: notifications),
                     direction: PopoverDirection.bottom,
-                    width: 260,
-                    height: 300,
-                    arrowHeight: 10,
-                    arrowWidth: 20,
+                    width: MediaQuery.of(context).size.width * 0.93,
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    arrowHeight: 20,
+                    arrowWidth: 25,
+                    arrowDxOffset: MediaQuery.of(context).size.width * 0.42,
                   );
                 },
                 icon: const Icon(Icons.notifications_none_rounded),
