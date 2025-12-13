@@ -21,7 +21,7 @@ class StudentCubit extends Cubit<StudentState> {
     final response = await _studentsRepo.getGrades();
 
     if (response is Map && response["statusCode"] == 200) {
-      emit(GetGrades(response));
+      emit(GetGrades(response['value']));
     } else {
       emit(StudentFailure(response.toString()));
     }
@@ -33,7 +33,7 @@ class StudentCubit extends Cubit<StudentState> {
     final response = await _studentsRepo.getAttendance();
 
     if (response is Map && response["statusCode"] == 200) {
-      emit(GetAttendance(response));
+      emit(GetAttendance(response['value']));
     } else {
       emit(StudentFailure(response.toString()));
     }
