@@ -29,7 +29,7 @@ class AppBarInHomeScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Gap(50),
-            const UserInfo(),
+            UserInfo(),
             const Gap(25),
             const SearchField(),
           ],
