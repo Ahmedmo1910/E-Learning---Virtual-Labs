@@ -1,4 +1,5 @@
 import 'package:e_learning/core/utils/app_colors.dart';
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
@@ -15,7 +16,6 @@ class _VideoScreenState extends State<VideoPlayerWidget> {
   late VideoPlayerController _videoPlayerController;
   ChewieController? _chewieController;
   bool isLoading = true;
-  
 
   @override
   void initState() {
@@ -67,7 +67,7 @@ class _VideoScreenState extends State<VideoPlayerWidget> {
     return isLoading
         ? SizedBox(
             height: MediaQuery.of(context).size.height * 0.2,
-            child: const Center(child: Text('Loading Video...')),
+            child: Center(child: Text(S.of(context).loadingVideo)),
           )
         : AspectRatio(
             aspectRatio: _videoPlayerController.value.aspectRatio,

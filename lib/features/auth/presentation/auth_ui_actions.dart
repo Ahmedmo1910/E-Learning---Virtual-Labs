@@ -5,6 +5,7 @@ import 'package:e_learning/features/auth/forget_password/presentation/views/rese
 import 'package:e_learning/features/auth/forget_password/presentation/views/verify_otp_screen.dart';
 import 'package:e_learning/features/auth/sign_in/presentation/views/signin_screen.dart';
 import 'package:e_learning/features/auth/verify_screen.dart';
+import 'package:e_learning/generated/l10n.dart';
 import 'package:e_learning/main_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -38,7 +39,7 @@ class AuthUiActions {
     if (state is AuthSuccess) {
       SnackBarHelper.showSnackBar(
         context,
-        'Account created successfuly',
+        S.of(context).accountCreatedSuccessfully,
         Colors.green,
       );
       Navigator.push(
@@ -68,8 +69,12 @@ class AuthUiActions {
     final state = auth.state;
 
     if (state is AuthSuccess) {
-      SnackBarHelper.showSnackBar(context, 'Login successfuly', Colors.green);
-      Navigator.pushReplacementNamed(context,MainScreen.routeName);
+      SnackBarHelper.showSnackBar(
+        context,
+        S.of(context).loginSuccessfully,
+        Colors.green,
+      );
+      Navigator.pushReplacementNamed(context, MainScreen.routeName);
     } else if (state is AuthFailure) {
       SnackBarHelper.showSnackBar(context, state.errorMsg, Colors.red);
     }
@@ -88,7 +93,11 @@ class AuthUiActions {
     final state = auth.state;
 
     if (state is OtpSent) {
-      SnackBarHelper.showSnackBar(context, "OTP sent! To $email", Colors.green);
+      SnackBarHelper.showSnackBar(
+        context,
+        S.of(context).otpSentToEmail(email),
+        Colors.green,
+      );
 
       Navigator.push(
         context,
@@ -113,7 +122,11 @@ class AuthUiActions {
     final state = auth.state;
 
     if (state is OtpVerified) {
-      SnackBarHelper.showSnackBar(context, "OTP Verified!", Colors.green);
+      SnackBarHelper.showSnackBar(
+        context,
+        S.of(context).otpVerified,
+        Colors.green,
+      );
 
       Navigator.push(
         context,
@@ -148,7 +161,7 @@ class AuthUiActions {
     if (state is PasswordResetSuccess) {
       SnackBarHelper.showSnackBar(
         context,
-        "Password Changed Successfully",
+        S.of(context).passwordChangedSuccessfully,
         Colors.green,
       );
 
@@ -174,7 +187,7 @@ class AuthUiActions {
     if (state is AuthSuccess) {
       SnackBarHelper.showSnackBar(
         context,
-        'Logged out successfully.',
+        S.of(context).loggedOutSuccessfully,
         Colors.green,
       );
       Navigator.of(context, rootNavigator: true).pushAndRemoveUntil(

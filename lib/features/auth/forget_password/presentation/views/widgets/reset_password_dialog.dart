@@ -1,5 +1,6 @@
 import 'package:e_learning/core/utils/app_colors.dart';
 import 'package:e_learning/core/utils/app_text_styles.dart';
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -14,7 +15,7 @@ class ResetPasswordDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       title: Text(
-        'New Password',
+        S.of(context).newPassword,
         style: AppTextStyles.semiBold20.copyWith(color: AppColors.primaryColor),
       ),
       content: BlocBuilder<ResetPasswordCubit, ResetPasswordState>(
@@ -27,11 +28,11 @@ class ResetPasswordDialog extends StatelessWidget {
               TextField(
                 controller: passwordController,
                 obscureText: true,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   focusedBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: AppColors.primaryColor),
                   ),
-                  labelText: 'New Password',
+                  labelText: S.of(context).newPassword,
                   labelStyle: TextStyle(color: AppColors.greyColor),
                 ),
                 cursorColor: AppColors.primaryColor,
@@ -53,7 +54,7 @@ class ResetPasswordDialog extends StatelessWidget {
         TextButton(
           onPressed: () => Navigator.pop(context),
           child: Text(
-            'Cancel',
+            S.of(context).cancel,
             style: AppTextStyles.medium14.copyWith(
               color: AppColors.primaryColor,
             ),
@@ -66,7 +67,7 @@ class ResetPasswordDialog extends StatelessWidget {
             );
           },
           child: Text(
-            'Change',
+            S.of(context).change,
             style: AppTextStyles.medium14.copyWith(
               color: AppColors.primaryColor,
             ),

@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:e_learning/core/helper_functions/secure_storage.dart';
 import 'package:e_learning/core/services/dio_client.dart';
+import 'package:e_learning/generated/l10n.dart';
 
 class AuthRepo {
   final DioClient _dioClient = DioClient();
@@ -106,7 +107,7 @@ class AuthRepo {
     } on DioException catch (e) {
       return {
         "success": false,
-        "message": e.response?.data["message"] ?? "Failed to send OTP",
+        "message": e.response?.data["message"] ??  S.current.otpSendFailed,
       };
     }
   }
@@ -124,7 +125,7 @@ class AuthRepo {
     } on DioException catch (e) {
       return {
         "success": false,
-        "message": e.response?.data["message"] ?? "OTP verification failed",
+        "message": e.response?.data["message"] ??  S.current.otpVerifyFailed,
       };
     }
   }
@@ -143,7 +144,7 @@ class AuthRepo {
     } on DioException catch (e) {
       return {
         "success": false,
-        "message": e.response?.data["message"] ?? "Reset failed",
+        "message": e.response?.data["message"] ?? S.current.resetFailed,
       };
     }
   }

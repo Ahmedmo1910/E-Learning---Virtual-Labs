@@ -2,6 +2,7 @@ import 'package:e_learning/core/utils/app_colors.dart';
 import 'package:e_learning/features/home/presentation/views/widgets/custom_text_me.dart';
 import 'package:e_learning/features/home/presentation/views/widgets/notification_list.dart';
 import 'package:e_learning/features/home/presentation/cubits/home_cubit/home_cubit.dart';
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -41,12 +42,12 @@ class UserInfo extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 customTextMe(
-                  text: 'Hi, $name 👋🏻',
+                  text: S.of(context).greeting(name),
                   size: 18,
                   weight: FontWeight.bold,
                 ),
                 customTextMe(
-                  text: 'Welcome to World of Learning! ',
+                  text:S.of(context).welcomeMessage,
                   size: 14,
                   color: Colors.white,
                   weight: FontWeight.bold,
