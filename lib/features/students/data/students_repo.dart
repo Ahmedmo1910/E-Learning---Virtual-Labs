@@ -3,6 +3,7 @@ import 'package:e_learning/core/services/dio_client.dart';
 
 class StudentsRepo {
   final DioClient _dioClient = DioClient();
+
   Future<dynamic> getDashboard() async {
     try {
       final responce = await _dioClient.dio.get('/api/v1/student/dashboard');
@@ -63,7 +64,7 @@ class StudentsRepo {
 
   Future<dynamic> updateProfile({
     required String fullname,
-     required String phonenumber,
+    required String phonenumber,
   }) async {
     try {
       final responce = await _dioClient.dio.put(

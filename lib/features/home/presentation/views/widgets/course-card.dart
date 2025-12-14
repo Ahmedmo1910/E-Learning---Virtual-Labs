@@ -9,7 +9,7 @@ class CourseCard extends StatelessWidget {
   final String subtitle;
   final double rating;
   final String ratingCount;
-  final String price;
+  final String subject;
 
   const CourseCard({
     super.key,
@@ -18,7 +18,7 @@ class CourseCard extends StatelessWidget {
     required this.subtitle,
     required this.rating,
     required this.ratingCount,
-    required this.price,
+    required this.subject,
   });
 
   @override
@@ -52,7 +52,6 @@ class CourseCard extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-
               // Bookmark
               Positioned(
                 right: 8,
@@ -85,7 +84,7 @@ class CourseCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                   ),
                   child: Text(
-                    "\$$price",
+                    "$subject",
                     style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
