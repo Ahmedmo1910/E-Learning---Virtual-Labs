@@ -4,7 +4,8 @@ import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 
 class VideoPlayerWidget extends StatefulWidget {
-  const VideoPlayerWidget({super.key});
+  final String videoUrl;
+  const VideoPlayerWidget({super.key, required this.videoUrl});
 
   @override
   State<VideoPlayerWidget> createState() => _VideoScreenState();
@@ -14,6 +15,7 @@ class _VideoScreenState extends State<VideoPlayerWidget> {
   late VideoPlayerController _videoPlayerController;
   ChewieController? _chewieController;
   bool isLoading = true;
+  
 
   @override
   void initState() {
@@ -23,9 +25,7 @@ class _VideoScreenState extends State<VideoPlayerWidget> {
 
   Future<void> initializePlayer() async {
     _videoPlayerController = VideoPlayerController.networkUrl(
-      Uri.parse(
-        'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4',
-      ),
+      Uri.parse(widget.videoUrl),
     );
 
     await _videoPlayerController.initialize();
@@ -66,7 +66,7 @@ class _VideoScreenState extends State<VideoPlayerWidget> {
   Widget build(BuildContext context) {
     return isLoading
         ? SizedBox(
-            height:MediaQuery.of(context).size.height * 0.2,
+            height: MediaQuery.of(context).size.height * 0.2,
             child: const Center(child: Text('Loading Video...')),
           )
         : AspectRatio(

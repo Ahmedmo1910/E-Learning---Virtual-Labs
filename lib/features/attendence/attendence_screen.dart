@@ -1,24 +1,20 @@
-import 'package:e_learning/features/attendence/attendence_screen_body.dart';
-import 'package:e_learning/features/students/data/cubit/student_cubit.dart';
+import 'package:e_learning/core/widgets/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'attendence_screen_body.dart';
+import 'cubit/attendance_cubit.dart';
 
-class AttendenceScreen extends StatefulWidget {
+class AttendenceScreen extends StatelessWidget {
   const AttendenceScreen({super.key});
 
   @override
-  State<AttendenceScreen> createState() => _GradesScreenState();
-}
-
-class _GradesScreenState extends State<AttendenceScreen> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<StudentCubit>().getAttendance();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return AttendenceScreenBody();
+    return BlocProvider(
+      create: (context) => AttendanceCubit()..getAttendance(),
+      child: Scaffold(
+        appBar: customAppBar(context, title: "Attendance"),
+        body: AttendenceScreenBody(),
+      ),
+    );
   }
 }

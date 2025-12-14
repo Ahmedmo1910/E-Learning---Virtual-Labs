@@ -8,7 +8,7 @@ class HomeCubit extends Cubit<HomeState> {
   final HomeRepo _homeRepo = HomeRepo();
   HomeCubit() : super(HomeState());
 
-  Future<void> getAllData({bool refresh = false}) async {
+  Future<void> getAllData({bool refresh = false, int day = 1}) async {
     try {
       final cachedProfile = await SecureStorage.getProfile();
 
@@ -20,6 +20,8 @@ class HomeCubit extends Cubit<HomeState> {
 
       final profile = await _homeRepo.getProfile();
       final notifications = await _homeRepo.getNotifications();
+      final lessons = await _homeRepo.getLessons();
+      final schedule = await _homeRepo.getSchedule(day);
 
       await SecureStorage.saveProfile(profile);
 
@@ -28,6 +30,8 @@ class HomeCubit extends Cubit<HomeState> {
           loading: true,
           profile: profile,
           notifications: notifications,
+          lessons: lessons,
+          schedule: schedule,
         ),
       );
     } catch (e) {
