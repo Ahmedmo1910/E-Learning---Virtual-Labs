@@ -3,6 +3,7 @@ import 'package:e_learning/core/utils/app_text_styles.dart';
 import 'package:e_learning/features/home/presentation/views/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar_v2/persistent_bottom_nav_bar_v2.dart';
+import 'features/courses/presentation/views/courses_screen.dart';
 import 'features/courses/presentation/views/courses_screen_body.dart';
 import 'features/profile/presentation/views/widgets/profile_screen_body.dart';
 
@@ -39,10 +40,10 @@ class _MainScreenState extends State<MainScreen> {
             ),
           ),
           PersistentTabConfig(
-            screen:CoursesScreenBody(),
+            screen:CoursesScreen(),
             item: ItemConfig(
               icon: const Icon(Icons.menu_book),
-              title: "Courses",
+              title: "Lessons",
               textStyle: AppTextStyles.medium12,
               activeForegroundColor: AppColors.primaryColor,
             ),
