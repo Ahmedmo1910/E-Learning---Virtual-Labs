@@ -1,4 +1,5 @@
 import 'package:e_learning/core/utils/app_text_styles.dart';
+import 'package:e_learning/features/courses/data/models/lesson_model.dart';
 import 'package:e_learning/features/courses/presentation/views/course_display_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -6,21 +7,31 @@ import 'custom_progress_bar.dart';
 
 class CourseWidget extends StatelessWidget {
   final String imageUrl;
-  final String courseName;
-  final String instructorName;
+  final double progress;
+  final LessonModel lesson;
+  final int i;
 
   const CourseWidget({
     super.key,
+
+    required this.progress,
+    required this.lesson,
     required this.imageUrl,
-    required this.courseName,
-    required this.instructorName,
+    required this.i,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, CourseDisplayScreen.routeName);
+        Navigator.pushNamed(
+          context,
+          CourseDisplayScreen.routeName,
+          arguments: {
+            'lesson': lesson,
+            'index': i,
+          },
+        );
       },
       child: Padding(
         padding: EdgeInsets.symmetric(vertical: 12),
@@ -62,16 +73,16 @@ class CourseWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     // mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(courseName, style: AppTextStyles.semiBold14),
+                      Text(lesson.subject, style: AppTextStyles.semiBold14),
                       const SizedBox(height: 4),
                       Text(
-                        instructorName,
+                        lesson.title,
                         style: AppTextStyles.regular12.copyWith(
                           color: Colors.black38,
                         ),
                       ),
                       Spacer(),
-                      CustomProgressBar(progress: 0.7),
+                      CustomProgressBar(progress: progress),
                     ],
                   ),
                 ),

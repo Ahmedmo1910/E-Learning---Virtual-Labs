@@ -1,22 +1,11 @@
 import 'package:e_learning/features/home/presentation/views/widgets/course-card.dart';
-import 'package:e_learning/features/students/data/cubit/student_cubit.dart';
-import 'package:e_learning/features/students/data/cubit/student_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ListViewOfCourses extends StatefulWidget {
+import '../../cubits/home_cubit/home_cubit.dart';
+
+class ListViewOfCourses extends StatelessWidget {
   const ListViewOfCourses({super.key});
-
-  @override
-  State<ListViewOfCourses> createState() => _ListViewOfCoursesState();
-}
-
-class _ListViewOfCoursesState extends State<ListViewOfCourses> {
-  @override
-  void initState() {
-    context.read<StudentCubit>().getLessons();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -27,43 +16,28 @@ class _ListViewOfCoursesState extends State<ListViewOfCourses> {
     ];
     return SizedBox(
       height: 240,
-      child: BlocBuilder<StudentCubit, StudentState>(
+      child: BlocBuilder<HomeCubit, HomeState>(
+        buildWhen: (previous, current) => previous.lessons != current.lessons,
         builder: (context, state) {
-          if (state is StudentLoading) {
-            return const Center(child: CircularProgressIndicator());
-          }
-          if (state is StudentFailure) {
-            return Center(
-              child: Text(
-                state.errorMsg,
-                style: const TextStyle(color: Colors.red, fontSize: 22),
-              ),
-            );
-          }
-
-          if (state is GetLessons) {
-            final lessons = state.data;
-            return ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: lessons.length,
-              itemBuilder: (context, i) {
-                final lesson = lessons[i];
-                return Padding(
-                  padding: const EdgeInsets.only(left: 8, bottom: 10),
-                  child: CourseCard(
-                    imageUrl: imageUrl[i % imageUrl.length],
-
-                    title: lesson['lessontitle'] ?? '',
-                    subtitle: lesson['description'] ?? '',
-                    rating: 4.5,
-                    ratingCount: '100',
-                    subject: lesson['subject'] ?? "",
-                  ),
-                );
-              },
-            );
-          }
-          return const SizedBox();
+          final lessons = state.lessons ?? [];
+          return ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: lessons.length ,
+            itemBuilder: (context, i) {
+              final lesson = lessons[i];
+              return Padding(
+                padding: const EdgeInsets.only(left: 8, bottom: 10),
+                child: CourseCard(
+                  imageUrl: imageUrl[i % imageUrl.length],
+                  title: lesson['lessontitle'] ?? '',
+                  subtitle: lesson['description'] ?? '',
+                  rating: 4.5,
+                  ratingCount: '100',
+                  subject: lesson['subject'] ?? "",
+                ),
+              );
+            },
+          );
         },
       ),
     );
