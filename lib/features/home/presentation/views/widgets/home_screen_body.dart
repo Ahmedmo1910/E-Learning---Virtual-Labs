@@ -1,3 +1,4 @@
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -21,16 +22,16 @@ class HomeScreenBody extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate([
               Padding(
-                padding: const EdgeInsets.only(left: 16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Gap(30),
-                    LineUpListView(listName: 'All Subjects'),
+                    LineUpListView(listName: S.of(context).allSubjects),
                     const Gap(15),
                     ListViewOfCourses(),
                     const Gap(15),
-                    LineUpListView(listName: 'My Schedule'),
+                    LineUpListView(listName: S.of(context).mySchedule),
                     const Gap(15),
                     ListViewWatchingCourse(),
                     Gap(20),

@@ -1,5 +1,6 @@
 import 'package:e_learning/core/widgets/custom_progress_hud.dart';
 import 'package:e_learning/core/widgets/snack_bar_helper.dart';
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -17,7 +18,7 @@ class ProfileScreenBodyBlocConsumer extends StatelessWidget {
         if (state is ProfileLogout) {
           SnackBarHelper.showSnackBar(
             context,
-            'Logged out successfully',
+            S.of(context).loggedOutSuccessfully,
             Colors.green,
           );
 

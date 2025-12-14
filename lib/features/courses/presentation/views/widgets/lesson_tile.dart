@@ -1,5 +1,6 @@
 import 'package:e_learning/core/utils/app_colors.dart';
 import 'package:e_learning/core/utils/app_text_styles.dart';
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class LessonTile extends StatelessWidget {
@@ -41,7 +42,7 @@ class LessonTile extends StatelessWidget {
                   .toList()
             : [
                 Text(
-                  'This course will be available soon',
+                    S.of(context).courseComingSoon,
                   style: AppTextStyles.regular14.copyWith(
                     color: AppColors.greyColor,
                   ),

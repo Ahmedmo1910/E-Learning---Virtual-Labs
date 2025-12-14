@@ -52,6 +52,8 @@ dependencies:
   popover: ^0.4.0
   intl: ^0.20.2
   lucide_icons: ^0.257.0
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
 
@@ -101,3 +103,5 @@ flutter:
           weight: 900
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+flutter_intl:
+  enabled: true

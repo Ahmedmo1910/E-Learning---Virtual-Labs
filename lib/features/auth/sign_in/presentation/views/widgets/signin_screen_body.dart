@@ -5,6 +5,7 @@ import 'package:e_learning/core/widgets/custom_text_form_field.dart';
 import 'package:e_learning/core/widgets/password_field.dart';
 import 'package:e_learning/features/auth/forget_password/presentation/views/forget_password_screen.dart';
 import 'package:e_learning/features/auth/sign_in/presentation/cubit/signin_cubit.dart';
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -32,12 +33,12 @@ class _SigninScreenBodyState extends State<SigninScreenBody> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const CustomText(label: 'Welcome'),
-              const CustomText(label: 'Back!'),
-              const SizedBox(height: 32.0),
+              CustomText(label: S.of(context).welcome),
+              CustomText(label: S.of(context).back),
+              SizedBox(height: 32.0),
               CustomTextFormField(
                 onSaved: (value) => email = value!,
-                hintText: 'Username or Email',
+                hintText: S.of(context).usernameOrEmail,
                 keyboardType: TextInputType.emailAddress,
                 prefixIcon: SvgPicture.asset(
                   'assets/icons/userName.svg',
@@ -59,7 +60,7 @@ class _SigninScreenBodyState extends State<SigninScreenBody> {
                     );
                   },
                   child: Text(
-                    'Forgot Password?',
+                    S.of(context).forgotPassword,
                     style: AppTextStyles.regular14.copyWith(
                       color: Color(0XFF858383),
                     ),
@@ -68,7 +69,7 @@ class _SigninScreenBodyState extends State<SigninScreenBody> {
               ),
               const SizedBox(height: 32.0),
               MainButton(
-                text: 'Sign In',
+                text: S.of(context).signIn,
                 hasCircularBorder: true,
                 onTap: () {
                   if (formKey.currentState!.validate()) {

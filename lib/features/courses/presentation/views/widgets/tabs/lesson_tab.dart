@@ -1,4 +1,5 @@
 import 'package:e_learning/features/courses/presentation/views/widgets/lesson_tile.dart';
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class LessonsTab extends StatelessWidget {
@@ -8,23 +9,23 @@ class LessonsTab extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.all(16.0),
-      children: const [
-        LessonTile(lessonNumber: "Lesson 1", title: "intro to course"),
+      children:  [
+        LessonTile(lessonNumber: S.of(context).lesson1, title: S.of(context).introToCourse),
         LessonTile(
-          lessonNumber: "Lesson 2",
-          title: "Dart",
+          lessonNumber: S.of(context).lesson2,
+          title: S.of(context).dart,
           subLessons: [
-            "dart variables and data types",
-            "conditions and control flow",
+            S.of(context).dartVariables,
+            S.of(context).conditions,
           ],
         ),
         LessonTile(
-          lessonNumber: "Lesson 3",
-          title: "Creating Your First Project in Figma",
+          lessonNumber: S.of(context).lesson3,
+          title:S.of(context).firstProjectFigma,
         ),
         LessonTile(
-          lessonNumber: "Lesson 4",
-          title: "Working with Layers and Groups in Figma",
+          lessonNumber:  S.of(context).lesson4,
+          title: S.of(context).workingLayersFigma,
         ),
       ],
     );

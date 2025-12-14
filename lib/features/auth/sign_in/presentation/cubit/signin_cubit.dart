@@ -1,4 +1,5 @@
 import 'package:e_learning/features/auth/data/auth_repo.dart';
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'signin_state.dart';
 
@@ -13,7 +14,7 @@ class SigninCubit extends Cubit<SigninState> {
       emit(SigninSuccess());
     } else {
       emit(
-        SigninFailure(response["message"] ?? "Login failed please try again"),
+        SigninFailure(response["message"] ?? S.current.loginFailed ),
       );
     }
   }

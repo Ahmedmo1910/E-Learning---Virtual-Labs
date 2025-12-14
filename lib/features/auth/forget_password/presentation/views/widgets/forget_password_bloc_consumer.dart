@@ -1,5 +1,6 @@
 import 'package:e_learning/core/widgets/custom_progress_hud.dart';
 import 'package:e_learning/core/widgets/snack_bar_helper.dart';
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import '../../cubit/reset_password_cubit.dart';
 import 'forget_password_screen_body.dart';
@@ -42,7 +43,7 @@ class ForgetPasswordBlocConsumer extends StatelessWidget {
           Navigator.pop(context);
           SnackBarHelper.showSnackBar(
             context,
-            'Password reset successfully',
+            S.of(context).passwordResetSuccessfully,
             Colors.green,
           );
         }

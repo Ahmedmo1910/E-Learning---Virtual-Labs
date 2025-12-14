@@ -1,5 +1,6 @@
 import 'package:e_learning/core/utils/app_colors.dart';
 import 'package:e_learning/core/utils/app_text_styles.dart';
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter/material.dart';
 
 class NotificationsList extends StatelessWidget {
@@ -10,10 +11,10 @@ class NotificationsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (notifications.isEmpty) {
-      return const Center(
+      return  Center(
         child: Padding(
           padding: EdgeInsets.all(16),
-          child: Text("No Notifications Available"),
+          child: Text(S.of(context).noNotifications,),
         ),
       );
     }
@@ -43,7 +44,7 @@ class NotificationsList extends StatelessWidget {
               color: AppColors.primaryColor,
             ),
             title: Text(
-              'New Message',
+             S.of(context).newMessage,
               style: AppTextStyles.small12.copyWith(
                 color: AppColors.primaryColor,
               ),
