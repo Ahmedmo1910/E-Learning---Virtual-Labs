@@ -32,6 +32,7 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
     case CourseDisplayScreen.routeName:
       return MaterialPageRoute(
         builder: (context) => const CourseDisplayScreen(),
+        settings: RouteSettings(arguments: settings.arguments),
       );
     case EditProfileScreen.routeName:
       final args = settings.arguments as Map;

@@ -52,7 +52,6 @@ class CourseCard extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
               ),
-
               // Bookmark
               Positioned(
                 right: 8,
