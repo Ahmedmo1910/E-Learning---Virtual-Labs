@@ -1,26 +1,20 @@
+import 'package:e_learning/core/widgets/custom_app_bar.dart';
 import 'package:e_learning/features/dashboard/dashbord_screen_body.dart';
-
-import 'package:e_learning/features/students/data/cubit/student_cubit.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'cubit/dashboard_cubit.dart';
 
-class DashboardScreen extends StatefulWidget {
+class DashboardScreen extends StatelessWidget {
   const DashboardScreen({super.key});
-
-  @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
-}
-
-class _DashboardScreenState extends State<DashboardScreen> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<StudentCubit>().getDashboard();
-  }
-
+  static const routeName = 'DashboardScreen';
   @override
   Widget build(BuildContext context) {
-    return DashbordScreenBody();
+    return BlocProvider(
+      create: (context) => DashboardCubit()..getDashboard(),
+      child: Scaffold(
+        appBar: customAppBar(context, title: "Dashboard"),
+        body: DashbordScreenBody(),
+      ),
+    );
   }
 }

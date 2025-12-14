@@ -51,4 +51,25 @@ class ProfileCubit extends Cubit<ProfileState> {
   void loadInitialProfile(Map profile) {
     emit(ProfileLoaded(profile as Map<String, dynamic>));
   }
+
+  Future<void> logout() async {
+    emit(ProfileLoading());
+
+    try {
+      final response = await _repo.logout();
+
+      await SecureStorage.logout();
+      await SecureStorage.clearProfile();
+
+      if (response is Map && response['statusCode'] == 200) {
+        emit(ProfileLogout());
+      } else {
+        emit(ProfileLogout());
+      }
+    } catch (e) {
+      await SecureStorage.logout();
+      await SecureStorage.clearProfile();
+      emit(ProfileLogout());
+    }
+  }
 }

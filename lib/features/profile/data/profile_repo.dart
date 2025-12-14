@@ -26,4 +26,16 @@ class ProfileRepo {
       return e.response?.data['message'] ?? 'Failed to updata profile';
     }
   }
+
+  Future<dynamic> logout() async {
+    try {
+      final response = await _dioClient.dio.post('/api/Auth/logout');
+      return response.data;
+    } on DioException catch (e) {
+      return {
+        "success": false,
+        "message": e.response?.data['message'] ?? 'Logout Failed',
+      };
+    }
+  }
 }

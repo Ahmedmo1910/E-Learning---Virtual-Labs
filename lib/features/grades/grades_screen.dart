@@ -1,27 +1,20 @@
-
-import 'package:e_learning/features/grades/grades_screen_body.dart';
-import 'package:e_learning/features/students/data/cubit/student_cubit.dart';
-
 import 'package:flutter/material.dart';
+import 'cubit/grades_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:e_learning/core/widgets/custom_app_bar.dart';
+import 'package:e_learning/features/grades/grades_screen_body.dart';
 
-
-class GradesScreen extends StatefulWidget {
+class GradesScreen extends StatelessWidget {
   const GradesScreen({super.key});
-
-  @override
-  State<GradesScreen> createState() => _GradesScreenState();
-}
-
-class _GradesScreenState extends State<GradesScreen> {
-  @override
-  void initState() {
-    super.initState();
-    context.read<StudentCubit>().getGrades();
-  }
-
+  static const routeName = 'gradesScreen';
   @override
   Widget build(BuildContext context) {
-    return GradesScreenBody();
+    return BlocProvider(
+      create: (context) => GradesCubit()..getGrades(),
+      child: Scaffold(
+        appBar: customAppBar(context, title: 'All Grades'),
+        body: GradesScreenBody(),
+      ),
+    );
   }
 }
