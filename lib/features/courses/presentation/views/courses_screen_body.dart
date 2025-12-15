@@ -46,7 +46,8 @@ class CoursesScreenBody extends StatelessWidget {
                   i: i,
                   lesson: lesson[i],
                   progress: progress[i],
-                  imageUrl: 'assets/images/figma.png',
+                  // imageUrl: 'assets/images/history.jpeg',
+                  imageUrl: images[i % images.length],
                 );
               },
             ),
@@ -58,3 +59,11 @@ class CoursesScreenBody extends StatelessWidget {
     );
   }
 }
+final List<String> images = [
+
+
+  'assets/images/science.jpeg',
+  'assets/images/cs.jpeg',
+  'assets/images/history.jpeg',
+  'assets/images/chem.jpeg',
+];

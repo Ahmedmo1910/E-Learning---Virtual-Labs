@@ -18,6 +18,7 @@ class CourseWidget extends StatelessWidget {
     required this.lesson,
     required this.imageUrl,
     required this.i,
+    
   });
 
   @override

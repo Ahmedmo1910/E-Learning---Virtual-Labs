@@ -1,7 +1,6 @@
 import 'package:e_learning/core/services/custom_bloc_observer.dart';
 import 'package:e_learning/core/services/get_it_service.dart';
 import 'package:e_learning/core/services/localization_provider.dart';
-import 'package:e_learning/features/home/presentation/views/home_screen.dart';
 import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

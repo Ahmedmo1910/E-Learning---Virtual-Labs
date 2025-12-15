@@ -18,9 +18,14 @@ class CourseDisplayScreenBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final List<String> videos = [
-      'https://www.bing.com/videos/riverview/relatedvideo?q=%d9%81%d9%8a%d8%af%d9%8a%d9%88%d9%87%d8%a7%d8%aa+%d8%aa%d8%b9%d9%84%d9%8a%d9%85%d9%8a%d8%a9+%d9%84%d9%84%d8%a7%d8%b7%d9%81%d8%a7%d9%84&&mid=26049C8C7F6DD5FEF83126049C8C7F6DD5FEF831&FORM=VCGVRP', // Lesson 0
-      'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4', // Lesson 1
-      'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4', // Lesson 2
+      'assets/video/sci.mp4',
+      'assets/video/cs.mp4',
+      'assets/video/his.mp4',
+      'assets/video/chem.mp4',
+
+      // 'https://www.bing.com/videos/riverview/relatedvideo?q=%d9%81%d9%8a%d8%af%d9%8a%d9%88%d9%87%d8%a7%d8%aa+%d8%aa%d8%b9%d9%84%d9%8a%d9%85%d9%8a%d8%a9+%d9%84%d9%84%d8%a7%d8%b7%d9%81%d8%a7%d9%84&&mid=26049C8C7F6DD5FEF83126049C8C7F6DD5FEF831&FORM=VCGVRP', // Lesson 0
+      // 'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4', // Lesson 1
+      // 'https://flutter.github.io/assets-for-api-docs/assets/videos/bee.mp4', // Lesson 2
     ];
     return DefaultTabController(
       length: 3,
