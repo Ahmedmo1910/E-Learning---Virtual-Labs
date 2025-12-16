@@ -2,6 +2,7 @@ import 'package:e_learning/core/widgets/snack_bar_helper.dart';
 import 'package:e_learning/features/auth/cubit/auth_cubit.dart';
 import 'package:e_learning/features/auth/cubit/auth_state.dart';
 import 'package:e_learning/features/auth/sign_in/presentation/views/signin_screen.dart';
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,15 +23,16 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
     final state = auth.state;
 
     return Scaffold(
-      appBar: AppBar(title: const Text("Verify Email")),
+      appBar: AppBar(title: Text(S.of(context).verifyEmailTitle)),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
-            Text("Enter the OTP sent to: ${widget.email}"),
+            // Text("Enter the OTP sent to: ${widget.email}"),
+            Text(S.of(context).enterOtpp(widget.email)),
             TextField(
               controller: otp,
-              decoration: const InputDecoration(labelText: "OTP Code"),
+              decoration: InputDecoration(labelText: S.of(context).otpCode),
             ),
 
             const SizedBox(height: 20),
@@ -54,7 +56,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                       if (state is AuthSuccess) {
                         SnackBarHelper.showSnackBar(
                           context,
-                          'Email Verified Successfully!',
+                          S.of(context).emailVerifiedSuccess,
                           Colors.green,
                         );
                         Navigator.pushReplacement(
@@ -73,7 +75,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                     },
               child: state is AuthLoading
                   ? const CircularProgressIndicator(color: Colors.white)
-                  : const Text("Verify"),
+                  : Text(S.of(context).verifyButton),
             ),
           ],
         ),

@@ -52,8 +52,17 @@ dependencies:
   popover: ^0.4.0
   intl: ^0.20.2
   lucide_icons: ^0.257.0
+  flutter_localizations:
+    sdk: flutter
 
 dev_dependencies:
+  flutter_launcher_icons: ^0.14.4
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/std_logo.PNG"
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -79,6 +88,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/animations/
+    - assets/video/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
@@ -101,3 +111,6 @@ flutter:
           weight: 900
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/to/font-from-package
+flutter_intl:
+  enabled: true
+

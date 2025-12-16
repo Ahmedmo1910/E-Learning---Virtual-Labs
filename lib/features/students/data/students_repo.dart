@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:e_learning/core/services/dio_client.dart';
+import 'package:e_learning/generated/l10n.dart';
 
 class StudentsRepo {
   final DioClient _dioClient = DioClient();
@@ -9,7 +10,7 @@ class StudentsRepo {
       final responce = await _dioClient.dio.get('/api/v1/student/dashboard');
       return responce.data;
     } on DioException catch (e) {
-      return e.response?.data['message'] ?? 'faild to get Dashboard';
+      return e.response?.data['message'] ?? S.current.failedToGetDashboard;
     }
   }
 
@@ -18,7 +19,7 @@ class StudentsRepo {
       final responce = await _dioClient.dio.get("/api/v1/student/my-grades");
       return responce.data;
     } on DioException catch (e) {
-      return e.response?.data["message"] ?? 'faild to get Grades';
+      return e.response?.data["message"] ?? S.current.failedToGetGrades;
     }
   }
 
@@ -29,7 +30,7 @@ class StudentsRepo {
       );
       return responce.data;
     } on DioException catch (e) {
-      return e.response?.data["message"] ?? 'faild to get Attendance';
+      return e.response?.data["message"] ??S.current.failedToGetAttendance;
     }
   }
 
@@ -38,7 +39,7 @@ class StudentsRepo {
       final responce = await _dioClient.dio.get("/api/v1/student/my-lessons");
       return responce.data;
     } on DioException catch (e) {
-      return e.response?.data["message"] ?? 'faild to get Lessons';
+      return e.response?.data["message"] ?? S.current.failedToGetLessons;
     }
   }
 
@@ -49,7 +50,7 @@ class StudentsRepo {
       );
       return responce.data;
     } on DioException catch (e) {
-      return e.response?.data["message"] ?? 'faild to receive Notifications';
+      return e.response?.data["message"] ??S.current.failedToGetNotifications;
     }
   }
 
@@ -58,7 +59,7 @@ class StudentsRepo {
       final responce = await _dioClient.dio.get("/api/v1/student/profile");
       return responce.data;
     } on DioException catch (e) {
-      return e.response?.data["message"] ?? 'faild to get Profile';
+      return e.response?.data["message"] ?? S.current.failedToGetProfile;
     }
   }
 
@@ -73,7 +74,7 @@ class StudentsRepo {
       );
       return responce.data;
     } on DioException catch (e) {
-      return e.response?.data['message'] ?? 'faild to updata profile';
+      return e.response?.data['message'] ??S.current.failedToUpdateProfile;
     }
   }
 }
