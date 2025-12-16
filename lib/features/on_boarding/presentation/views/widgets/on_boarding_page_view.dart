@@ -1,5 +1,6 @@
 import 'package:e_learning/core/utils/app_colors.dart';
 import 'package:e_learning/core/utils/app_text_styles.dart';
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'page_view_item.dart';
 
@@ -17,11 +18,9 @@ class OnBoardingPageView extends StatelessWidget {
         children: [
           PageViewItem(
             image: 'assets/images/on_boarding1.png',
-            subtitle:
-                'Every great journey begins with curiosity,\nLet’s unlock the power of your mind together.',
+            subtitle: S.of(context).onBoardingSubtitle1,
             title: Text(
-              'Empower Your\n Mind with Us',
-
+              S.of(context).onBoardingTitle1,
               style: AppTextStyles.semiBold36.copyWith(
                 color: AppColors.primaryColor,
               ),
@@ -29,10 +28,9 @@ class OnBoardingPageView extends StatelessWidget {
           ),
           PageViewItem(
             image: 'assets/images/on_boarding2.png',
-            subtitle:
-                'You already have what it takes — we’ll help you bring it to life.',
+            subtitle: S.of(context).onBoardingSubtitle2,
             title: Text(
-              'Unlock Your Learning\n               Potential',
+              S.of(context).onBoardingTitle2,
               style: AppTextStyles.semiBold36.copyWith(
                 color: AppColors.primaryColor,
               ),
@@ -40,10 +38,9 @@ class OnBoardingPageView extends StatelessWidget {
           ),
           PageViewItem(
             image: 'assets/images/on_boarding3.png',
-            subtitle:
-                'Start your learning adventure today — your future self will thank you!',
+            subtitle: S.of(context).onBoardingSubtitle3,
             title: Text(
-              'Dive into Your First\n             Lesson!',
+              S.of(context).onBoardingTitle3,
               style: AppTextStyles.semiBold36.copyWith(
                 color: AppColors.primaryColor,
               ),

@@ -2,6 +2,7 @@ import 'package:e_learning/core/widgets/custom_button.dart';
 import 'package:e_learning/features/auth/cubit/auth_cubit.dart';
 import 'package:e_learning/features/auth/cubit/auth_state.dart';
 import 'package:e_learning/features/auth/presentation/auth_ui_actions.dart';
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -32,7 +33,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        appBar: AppBar(title: const Text("Reset Password")),
+        appBar: AppBar(title:  Text(S.of(context).resetPasswordTitle)),
         body: Padding(
           padding: const EdgeInsets.all(20),
           child: Form(
@@ -42,7 +43,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                 TextFormField(
                   obscureText: true,
                   decoration: InputDecoration(
-                    hintText: "New Password",
+                    hintText: S.of(context).newPasswordHint,
                     filled: true,
                     border: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey.shade400),
@@ -62,9 +63,9 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                     ),
                   ),
                   validator: (val) {
-                    if (val == null || val.isEmpty) return "Password required";
+                    if (val == null || val.isEmpty) return S.of(context).passwordRequired;
       
-                    if (val.length < 8) return "Required 8 characters or higher";
+                    if (val.length < 8) return  S.of(context).passwordMinLength;
       
                     return null;
                   },
@@ -77,7 +78,7 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen> {
                   onTap: state is AuthLoading ? null : _resetPassword,
                   child: state is AuthLoading
                       ? CircularProgressIndicator(color: Colors.white)
-                      : const Text("Reset Password"),
+                      :  Text(S.of(context).resetPasswordButton),
                 ),
               ],
             ),

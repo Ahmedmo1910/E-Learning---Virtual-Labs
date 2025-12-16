@@ -1,5 +1,6 @@
 import 'package:e_learning/core/utils/app_colors.dart';
 import 'package:e_learning/core/utils/app_text_styles.dart';
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class HaveAccountWidget extends StatelessWidget {
       alignment: Alignment.center,
       child: Text.rich(
         TextSpan(
-          text: 'I Already Have an Account ',
+          text: S.of(context).alreadyHaveAccount,
           style: AppTextStyles.regular14.copyWith(color: Color(0xFF858383)),
           children: [
             TextSpan(
@@ -20,7 +21,7 @@ class HaveAccountWidget extends StatelessWidget {
                 ..onTap = () {
                   Navigator.pop(context);
                 },
-              text: 'Sign In',
+              text: S.of(context).signIn,
               style: AppTextStyles.semiBold14.copyWith(
                 color: AppColors.primaryColor,
                 decoration: TextDecoration.underline,
