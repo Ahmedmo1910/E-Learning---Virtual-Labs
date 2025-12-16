@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:e_learning/core/services/dio_client.dart';
+import 'package:e_learning/generated/l10n.dart';
 
 class HomeRepo {
   final DioClient _dioClient = DioClient();
@@ -10,7 +11,7 @@ class HomeRepo {
       );
       return response.data['value'];
     } on DioException catch (e) {
-      return e.response?.data["message"] ?? 'Failed to receive Notifications';
+      return e.response?.data["message"] ?? S.current.failedNotifications;
     }
   }
 
@@ -19,7 +20,7 @@ class HomeRepo {
       final response = await _dioClient.dio.get("/api/v1/student/profile");
       return response.data;
     } on DioException catch (e) {
-      return e.response?.data["message"] ?? 'Failed to get Profile';
+      return e.response?.data["message"] ?? S.current.failedGetProfile;
     }
   }
 
@@ -28,7 +29,7 @@ class HomeRepo {
       final response = await _dioClient.dio.get("/api/v1/student/my-lessons");
       return response.data['value'];
     } on DioException catch (e) {
-      return e.response?.data["message"] ?? 'Failed to get Lessons';
+      return e.response?.data["message"] ?? S.current.failedGetLessons;
     }
   }
 
@@ -41,7 +42,7 @@ class HomeRepo {
       print(response.data);
       return response.data['value'];
     } on DioException catch (e) {
-      return e.response?.data["message"] ?? 'Failed to get Lessons';
+      return e.response?.data["message"] ?? S.current.failedGetSchedule;
     }
   }
 }

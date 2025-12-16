@@ -1,3 +1,4 @@
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'cubit/grades_cubit.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,7 +13,7 @@ class GradesScreen extends StatelessWidget {
     return BlocProvider(
       create: (context) => GradesCubit()..getGrades(),
       child: Scaffold(
-        appBar: customAppBar(context, title: 'All Grades'),
+        appBar: customAppBar(context, title: S.of(context).allGrades),
         body: GradesScreenBody(),
       ),
     );

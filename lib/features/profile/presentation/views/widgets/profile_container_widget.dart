@@ -1,9 +1,11 @@
 import 'package:e_learning/core/utils/app_colors.dart';
 import 'package:e_learning/core/utils/app_text_styles.dart';
+import 'package:e_learning/core/widgets/language_selector.dart';
 import 'package:e_learning/features/attendence/attendence_screen.dart';
 import 'package:e_learning/features/dashboard/dash_board_screen.dart';
 import 'package:e_learning/features/grades/grades_screen.dart';
 import 'package:e_learning/features/profile/presentation/views/edit_profile_screen.dart';
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../cubits/profile_cubit/profile_cubit.dart';
@@ -51,7 +53,7 @@ class ProfileContainerWidget extends StatelessWidget {
                 ),
                 const SizedBox(height: 35),
                 CustomListTileWidget(
-                  title: "Edit Profile",
+                  title: S.of(context).editProfile,
                   leadingIcon: Icons.edit_outlined,
                   onTap: () async {
                     final result = await Navigator.pushNamed(
@@ -65,21 +67,21 @@ class ProfileContainerWidget extends StatelessWidget {
                   },
                 ),
                 CustomListTileWidget(
-                  title: "DashBoard",
+                  title: S.of(context).dashboard,
                   leadingIcon: Icons.dashboard_customize,
                   onTap: () {
                     Navigator.pushNamed(context, DashboardScreen.routeName);
                   },
                 ),
                 CustomListTileWidget(
-                  title: "Grades",
+                  title: S.of(context).grades,
                   leadingIcon: Icons.my_library_books,
                   onTap: () async {
                     Navigator.pushNamed(context, GradesScreen.routeName);
                   },
                 ),
                 CustomListTileWidget(
-                  title: "Attendence",
+                  title: S.of(context).attendence,
                   leadingIcon: Icons.assessment,
                   onTap: () async {
                     Navigator.of(context).push(
@@ -90,12 +92,13 @@ class ProfileContainerWidget extends StatelessWidget {
                   },
                 ),
                 CustomListTileWidget(
-                  title: "Privacy Policy",
+                  title: S.of(context).privacyPolicy,
                   leadingIcon: Icons.lock_outline,
                   onTap: () {},
                 ),
+                LanguageSelectorTile(),
                 CustomListTileWidget(
-                  title: "Sign Out",
+                  title: S.of(context).signOut,
                   leadingIcon: Icons.logout,
                   isSignOut: true,
                   onTap: () {
@@ -104,20 +107,20 @@ class ProfileContainerWidget extends StatelessWidget {
                       builder: (dialogContext) {
                         return AlertDialog(
                           title: Text(
-                            'Sign Out',
+                            S.of(context).signOut,
                             style: AppTextStyles.semiBold18.copyWith(
                               color: AppColors.primaryColor,
                             ),
                           ),
                           content: Text(
-                            'Are you sure you want to sign out?',
+                            S.of(context).signOutConfirmation,
                             style: AppTextStyles.regular14,
                           ),
                           actions: [
                             TextButton(
                               onPressed: () => Navigator.pop(dialogContext),
                               child: Text(
-                                'Cancel',
+                                S.of(context).cancel,
                                 style: AppTextStyles.regular14.copyWith(
                                   color: AppColors.primaryColor,
                                 ),
@@ -129,7 +132,7 @@ class ProfileContainerWidget extends StatelessWidget {
                                 context.read<ProfileCubit>().logout();
                               },
                               child: Text(
-                                'Sign Out',
+                                S.of(context).signOut,
                                 style: AppTextStyles.regular14.copyWith(
                                   color: Colors.red,
                                 ),

@@ -1,3 +1,4 @@
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -23,16 +24,15 @@ class ForgetPasswordScreenBody extends StatelessWidget {
           children: [
             //Header Screen .............:)
             AuthHeaderWidget(
-              headerTitle: 'Forget Password ?',
-              headerSubTitle:
-                  "Enter your email address and\nwe’ll send a confirmation code",
+              headerTitle: S.of(context).forgetPasswordTitle,
+              headerSubTitle: S.of(context).forgetPasswordSubtitle,
             ),
             //Form .............:)
             SizedBox(height: 30),
             Form(
               key: _formKey,
               child: CustomTextFormField(
-                hintText: "Email",
+                hintText: S.of(context).emailHint,
                 onSaved: (val) => email = val!.trim(),
                 prefixIcon: SvgPicture.asset(
                   'assets/icons/email.svg',
@@ -44,7 +44,7 @@ class ForgetPasswordScreenBody extends StatelessWidget {
 
             //Continue Bottom ..................:)
             MainButton(
-              text: 'Continue',
+              text: S.of(context).continueButton,
               hasCircularBorder: true,
               onTap: () {
                 if (!_formKey.currentState!.validate()) return;

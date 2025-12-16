@@ -2,6 +2,7 @@ import 'package:e_learning/core/widgets/custom_button.dart';
 import 'package:e_learning/features/auth/cubit/auth_cubit.dart';
 import 'package:e_learning/features/auth/cubit/auth_state.dart';
 import 'package:e_learning/features/auth/presentation/auth_ui_actions.dart';
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -24,9 +25,9 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
     final auth = context.watch<AuthCubit>();
     final state = auth.state;
     return GestureDetector(
-       onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        appBar: AppBar(title: const Text("Verify OTP")),
+        appBar: AppBar(title: Text(S.of(context).verifyOtpTitle)),
         body: Padding(
           padding: const EdgeInsets.all(20),
           child: Form(
@@ -35,7 +36,7 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
               children: [
                 TextFormField(
                   decoration: InputDecoration(
-                    hintText: "OTP Code",
+                    hintText: S.of(context).otpCodeHint,
                     filled: true,
                     border: OutlineInputBorder(
                       borderSide: BorderSide(color: Colors.grey.shade400),
@@ -56,21 +57,21 @@ class _VerifyOtpScreenState extends State<VerifyOtpScreen> {
                   ),
                   validator: (val) {
                     if (val == null || val.isEmpty) {
-                      return "OTP required";
+                      return S.of(context).otpRequired;
                     } else {
                       return null;
                     }
                   },
                   onSaved: (val) => otp = val!.trim(),
                 ),
-      
+
                 const SizedBox(height: 20),
-      
+
                 MainButton(
                   onTap: state is AuthLoading ? null : _verifyOtp,
                   child: state is AuthLoading
                       ? CircularProgressIndicator(color: Colors.white)
-                      : const Text("Verify"),
+                      : Text(S.of(context).verifyButton),
                 ),
               ],
             ),

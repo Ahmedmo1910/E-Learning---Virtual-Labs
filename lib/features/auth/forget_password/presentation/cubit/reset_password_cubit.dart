@@ -1,4 +1,5 @@
 import 'package:e_learning/features/auth/data/auth_repo.dart';
+import 'package:e_learning/generated/l10n.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 part 'reset_password_state.dart';
 
@@ -19,7 +20,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     if (response["success"] == true) {
       emit(OtpSent());
     } else {
-      emit(ResetPasswordFailure(response["message"] ?? "Failed to send OTP"));
+      emit(ResetPasswordFailure(response["message"] ??  S.current.failedToSendOtp));
     }
   }
 
@@ -32,7 +33,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
       resetToken = response['resettoken'];
       emit(OtpVerified());
     } else {
-      emit(ResetPasswordFailure(response["message"] ?? "OTP incorrect"));
+      emit(ResetPasswordFailure(response["message"] ?? S.current.otpIncorrect));
     }
   }
 
@@ -50,7 +51,7 @@ class ResetPasswordCubit extends Cubit<ResetPasswordState> {
     } else {
       emit(
         ResetPasswordFailure(
-          response["message"] ?? "Resetting password failed",
+          response["message"] ?? S.current.resetPasswordFailed,
         ),
       );
     }
