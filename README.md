@@ -21,7 +21,7 @@ Integrated with the Teacher App, so any updates—courses, sessions, or exams—
 ## Screenshots 📱
 ### Splash & Onboarding
 ![Splash Screen](https://github.com/Ahmedmo1910/E-Learning---Virtual-Labs/blob/07b200b123c0ee72cb572d23c1d908fdce10e1b5/Splash%20.jpeg)
-![Onboarding Screen 1]([screenshots/onboarding.png](https://github.com/Ahmedmo1910/E-Learning---Virtual-Labs/blob/1da19604a70e360de2aeeb33801a40b42c3e2238/onboarding%201.jpeg))
+![Onboarding Screen 1]([[screenshots/onboarding.png](https://github.com/Ahmedmo1910/E-Learning---Virtual-Labs/blob/1da19604a70e360de2aeeb33801a40b42c3e2238/onboarding%201.jpeg)](https://github.com/Ahmedmo1910/E-Learning---Virtual-Labs/blob/27b57750bc554b89629c3c0d557159ff8f35e893/onboarding%201.jpeg))
 ![Onboarding Screen 2]([screenshots/onboarding.png](https://github.com/Ahmedmo1910/E-Learning---Virtual-Labs/blob/1da19604a70e360de2aeeb33801a40b42c3e2238/onboarding%201.jpeg))
 ![Onboarding Screen 3]([screenshots/onboarding.png](https://github.com/Ahmedmo1910/E-Learning---Virtual-Labs/blob/1da19604a70e360de2aeeb33801a40b42c3e2238/onboarding%201.jpeg))
 
