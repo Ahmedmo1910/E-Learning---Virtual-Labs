@@ -20,7 +20,7 @@ Integrated with the Teacher App, so any updates—courses, sessions, or exams—
 
 ## Screenshots 📱
 ### Splash & Onboarding
-![Splash Screen]()
+![Splash Screen](https://github.com/Ahmedmo1910/E-Learning---Virtual-Labs/blob/07b200b123c0ee72cb572d23c1d908fdce10e1b5/Splash%20.jpeg)
 ![Onboarding Screen](screenshots/onboarding.png)
 
 ### Auth
