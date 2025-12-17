@@ -36,7 +36,7 @@ Students can also **record attendance**, access learning materials, and particip
 ![Auth Screen](https://github.com/Ahmedmo1910/E-Learning---Virtual-Labs/blob/11608ba90affb0cbedfe0f06148a1a0ecf076439/auth%20screen%20.jpeg)
 
 ### Home 
-![Home Screen](screenshots/home.png)
+![Home Screen](https://github.com/Ahmedmo1910/E-Learning---Virtual-Labs/blob/a0fb5633bb950bf4274b870175a3fa5de53f42f6/home%20screen.jpeg)
 
 ### Lessons 
 ![Session Screen](screenshots/session.png)
