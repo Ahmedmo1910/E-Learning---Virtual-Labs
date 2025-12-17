@@ -33,10 +33,12 @@ Students can also **record attendance**, access learning materials, and particip
 ![Onboarding 3](https://github.com/Ahmedmo1910/E-Learning---Virtual-Labs/blob/21c65cd62c6fa14efdbd34fce9e13924723ed6d4/on%20boarding%203.jpeg?raw=true)
 
 ### Authentication
-![Auth Screen](screenshots/auth.png)
+![Auth Screen](https://github.com/Ahmedmo1910/E-Learning---Virtual-Labs/blob/11608ba90affb0cbedfe0f06148a1a0ecf076439/auth%20screen%20.jpeg)
 
-### Home & Sessions
+### Home 
 ![Home Screen](screenshots/home.png)
+
+### Lessons 
 ![Session Screen](screenshots/session.png)
 
 ### Attendance & Exams
